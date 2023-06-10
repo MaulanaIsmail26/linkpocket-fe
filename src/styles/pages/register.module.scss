@@ -18,7 +18,7 @@
 
       .cardFormRegister {
         width: 400px;
-        height: 450px;
+        height: 472px;
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.28), rgba(255, 255, 255, 0));
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
@@ -27,7 +27,12 @@
         border-radius: 32px;
 
         .titleCard {
-          h3, h5 {
+          .iconApp {
+            filter: drop-shadow(4px 4px 7px rgba(0, 0, 0, 0.5));
+            margin: 20px 0 10px 0;
+          }
+
+          h5 {
             color: white;
           }
 
@@ -92,6 +97,7 @@
               left: 0;
               color: white;
               font-size: 16px;
+              border-bottom: 1px solid #03e9f4;
             }
 
             label {
@@ -116,29 +122,47 @@
             }
           }
 
-          a {
-            position: relative;
-            display: inline-block;
-            padding: 5px 20px;
-            color: #03e9f4;
-            font-size: 16px;
-            text-decoration: none;
-            text-transform: uppercase;
-            overflow: hidden;
-            transition: .5s;
-            margin-top: 10px;
-            letter-spacing: 4px
-          }
+          .areaSignUpAndLogin {
+            .btnSignUp {
+              position: relative;
+              display: inline-block;
+              padding: 5px 20px;
+              color: #03e9f4;
+              font-size: 16px;
+              text-decoration: none;
+              text-transform: uppercase;
+              overflow: hidden;
+              transition: .5s;
+              margin-top: 10px;
+              letter-spacing: 4px
+            }
 
-          a:hover {
-            background: #03e9f4;
-            color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 5px #03e9f4,
-              0 0 25px #03e9f4,
-              0 0 50px #03e9f4,
-              0 0 100px #03e9f4;
+            .btnSignUp:hover {
+              background: #03e9f4;
+              color: #fff;
+              border-radius: 5px;
+              box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+            }
+
+            .textLogin {
+              color: white;
+              margin-top: 15px;
+              font-size: 14px;
+
+              .login {
+                color: #03e9f4;
+                text-decoration: none;
+              }
+
+              .login:hover {
+                text-decoration: underline;
+              }
+            }
           }
+          
 
           span {
             position: absolute;

@@ -1,5 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import style from "@/styles/pages/register.module.scss";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Register() {
   return (
@@ -14,20 +17,25 @@ export default function Register() {
         <section className={`container-fluid ${style.register}`}>
           <div className={`container`}>
             <div className={`row`}>
-              <div className={`col-6`}></div>
               <div
-                className={`col-5 offset-1 position-relative ${style.formRegisterSide}`}
+                className={`col-12 position-relative ${style.formRegisterSide}`}
               >
                 {/* CARD FORM REGISTER */}
                 <div
-                  className={`position-absolute top-50 start-50 translate-middle px-5 ${style.cardFormRegister}`}
+                  className={`position-absolute top-50 end-0 translate-middle-y px-5 ${style.cardFormRegister}`}
                 >
                   {/* TITLE CARD */}
                   <div className={`row ${style.titleCard}`}>
                     <div className={`col`}>
-                      <h3 className="mt-5 d-flex justify-content-center mb-4">
-                        LinkPocket
-                      </h3>
+                      <div className="d-flex justify-content-center">
+                        <Image
+                          src={require("/public/images/Icon-app-nooutline.png")}
+                          className={`${style.iconApp}`}
+                          // width={500}
+                          height={75}
+                          alt="Icon-Linkpocket"
+                        />
+                      </div>
                       <h5 className="d-flex justify-content-center">
                         Please sign up with your account
                       </h5>
@@ -68,13 +76,26 @@ export default function Register() {
                           <input type="password" name="" required="" />
                           <label>Password</label>
                         </div>
-                        <a href="#">
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          Login
-                        </a>
+                        <div className={`row ${style.areaSignUpAndLogin}`}>
+                          <div className={`col-12`}>
+                            <a href="" className={`${style.btnSignUp}`}>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              SignUp
+                            </a>
+                            <p className={`text-center ${style.textLogin}`}>
+                              Anda sudah punya akun?{" "}
+                              <Link
+                                href={"/auth/login/recruiter"}
+                                className={`${style.login}`}
+                              >
+                                Masuk disini
+                              </Link>
+                            </p>
+                          </div>
+                        </div>
                       </form>
                     </div>
                   </div>
