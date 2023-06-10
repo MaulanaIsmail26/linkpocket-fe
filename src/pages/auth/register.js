@@ -88,7 +88,7 @@ export default function Register() {
                             <p className={`text-center ${style.textLogin}`}>
                               Anda sudah punya akun?{" "}
                               <Link
-                                href={"/auth/login/recruiter"}
+                                href={"/auth/login"}
                                 className={`${style.login}`}
                               >
                                 Masuk disini
