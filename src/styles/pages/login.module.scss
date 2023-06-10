@@ -1,0 +1,258 @@
+.main {
+  padding: 0;
+  margin: 0;
+
+  .login {
+    background-image: url("../../../public/images/background-imgae-auth.jpg");
+    background-size: cover;
+    background-position: 0 -40px;
+    background-repeat: no-repeat;
+    // background: rgb(0, 212, 255);
+    //   background: linear-gradient(130deg, rgba(0, 212, 255, 1) 0%, rgba(9, 9, 121, 1) 65%, rgba(2, 0, 36, 1) 100%);
+    height: 100vh;
+    position: relative;
+
+    .formLoginSide {
+      height: 100vh;
+      overflow: auto;
+
+      .cardFormLogin {
+        width: 400px;
+        height: 472px;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.28), rgba(255, 255, 255, 0));
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 32px;
+
+        .titleCard {
+          .iconApp {
+            filter: drop-shadow(4px 4px 7px rgba(0, 0, 0, 0.5));
+            margin: 20px 0 10px 0;
+          }
+
+          h5 {
+            color: white;
+          }
+
+          h5 {
+            margin-bottom: 35px;
+          }
+        }
+
+        .formLogin {
+          // display: flex;
+          // justify-content: center;
+
+          // input {
+          //   // width: 400px;
+          //   // padding: 13px;
+          //   // padding-left: 20px;
+          //   color: #01d2d6;
+          //   font-size: 14px;
+          //   border-color: white;
+          //   border-radius: 7 px;
+          //   border: 2px white solid;
+          //   background-color: transparent;
+          //   ::placeholder {
+          //     color: white;
+          //   }
+          // }
+
+          // input:focus {
+          //   box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.11);
+          //   border-color: #01d2d6;
+          // }
+
+          .userbox {
+            position: relative;
+
+            input {
+              width: 100%;
+              padding: 0px 0 10px 0;
+              margin-top: 15px;
+              font-size: 16px;
+              color: #fff;
+              margin-bottom: 30px;
+              border: none;
+              border-bottom: 1px solid #fff;
+              outline: none;
+              background: transparent;
+            }
+
+            label {
+              position: absolute;
+              top: 0;
+              left: 0;
+              padding: 10px 0;
+              font-size: 16px;
+              color: #fff;
+              pointer-events: none;
+              transition: .5s;
+            }
+
+            input:focus {
+              top: -20px;
+              left: 0;
+              color: white;
+              font-size: 16px;
+              border-bottom: 1px solid #03e9f4;
+            }
+
+            label {
+              top: -20px;
+              left: 0;
+              color: white;
+              font-size: 16px;
+            }
+
+            input:valid {
+              top: -20px;
+              left: 0;
+              color: white;
+              font-size: 16px;
+            }
+
+            label {
+              top: -20px;
+              left: 0;
+              color: white;
+              font-size: 16px;
+            }
+          }
+
+          .areaLoginAndSignUp {
+            .btnLogin {
+              position: relative;
+              display: inline-block;
+              padding: 5px 20px;
+              color: #03e9f4;
+              font-size: 16px;
+              text-decoration: none;
+              text-transform: uppercase;
+              overflow: hidden;
+              transition: .5s;
+              margin-top: 10px;
+              letter-spacing: 4px
+            }
+
+            .btnLogin:hover {
+              background: #03e9f4;
+              color: #fff;
+              border-radius: 5px;
+              box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+            }
+
+            .textSignUp {
+              color: white;
+              margin-top: 15px;
+              font-size: 14px;
+
+              .signUp {
+                color: #03e9f4;
+                text-decoration: none;
+              }
+
+              .signUp:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+
+
+          span {
+            position: absolute;
+            display: block;
+          }
+
+          span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #03e9f4);
+            animation: btn-anim1 1s linear infinite;
+          }
+
+          @keyframes btn-anim1 {
+            0% {
+              left: -100%;
+            }
+
+            50%,
+            100% {
+              left: 100%;
+            }
+          }
+
+          span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #03e9f4);
+            animation: btn-anim2 1s linear infinite;
+            animation-delay: .25s
+          }
+
+          @keyframes btn-anim2 {
+            0% {
+              top: -100%;
+            }
+
+            50%,
+            100% {
+              top: 100%;
+            }
+          }
+
+          span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #03e9f4);
+            animation: btn-anim3 1s linear infinite;
+            animation-delay: .5s
+          }
+
+          @keyframes btn-anim3 {
+            0% {
+              right: -100%;
+            }
+
+            50%,
+            100% {
+              right: 100%;
+            }
+          }
+
+          span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #03e9f4);
+            animation: btn-anim4 1s linear infinite;
+            animation-delay: .75s
+          }
+
+          @keyframes btn-anim4 {
+            0% {
+              bottom: -100%;
+            }
+
+            50%,
+            100% {
+              bottom: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
