@@ -145,6 +145,60 @@ export default function Home() {
                         >
                           LinkedIn
                         </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          WhatsApp
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          Shopee
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          LinkedIn
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          WhatsApp
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          Shopee
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          LinkedIn
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          WhatsApp
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          Shopee
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          LinkedIn
+                        </button>
                         <style>
                           {`
                             ::-webkit-scrollbar {
