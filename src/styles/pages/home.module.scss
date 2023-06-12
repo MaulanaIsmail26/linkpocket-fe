@@ -73,7 +73,7 @@
       }
 
       .cardLinkPocket {
-        margin-top: 26px;
+        margin-top: 4.5vh;
         width: 450px;
         height: 87vh;
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0));
@@ -84,6 +84,8 @@
         border-radius: 25px;
 
         .profileCard {
+          margin-bottom: 28px;
+
           .photoProfile {
             width: 120px;
             height: 120px;
@@ -105,17 +107,42 @@
           }
 
           .btnShare {
-            background-color: #03e9f4;
+            background-color: transparent;
             border-color: #03e9f4;
-            color: rgb(51, 45, 45);
+            color: #03e9f4;
             font-size: 13px;
             height: 33px;
             border-radius: 12px;
           }
 
           .btnShare:hover {
+            background-color: #03e9f4;
+            border-color: #03e9f4;
+            color: rgb(51, 45, 45);
+          }
+        }
+
+        .linkSection {
+          height: 57vh;
+          overflow: auto;
+          // border-radius: 20px;
+          // background-color: red;
+
+          .linkStick {
             background-color: #00d3df;
             border-color: #00d3df;
+            border-radius: 30px;
+            color: rgb(51, 45, 45);
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Courier New', Courier, monospace;
+            height: 38px;
+            margin-bottom: 8px;
+          }
+
+          .linkStick:hover {
+            background-color: #02c0ca;
+            border-color: #02c0ca;
           }
         }
       }

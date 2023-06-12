@@ -53,6 +53,7 @@ export default function Home() {
                 <div
                   className={`position-absolute top-50 start-50 translate-middle p-4 ${style.cardLinkPocket}`}
                 >
+                  {/* PROFILE SECTION */}
                   <div className={`row ${style.profileCard}`}>
                     <div className="col-4">
                       <Image
@@ -76,6 +77,85 @@ export default function Home() {
                         >
                           Share your Linkpocket card
                         </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* LINKS SECTION */}
+                  <div className={`row ${style.linkSection}`}>
+                    <div className="col-12">
+                      <div className="d-grid gap-2 ">
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          Facebook
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          YouTube
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          Instagram
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          Twitter
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          Tiktok
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          GitHub
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          E-mail
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          WhatsApp
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          Shopee
+                        </button>
+                        <button
+                          className={`btn ${style.linkStick}`}
+                          type="button"
+                        >
+                          LinkedIn
+                        </button>
+                        <style>
+                          {`
+                            ::-webkit-scrollbar {
+                              width: 0.3em;
+                              height: 0.5em;
+                            }
+                            ::-webkit-scrollbar-thumb {
+                              background-color: rgba(0, 0, 0, 0.2);
+                            }
+                          `}
+                        </style>
                       </div>
                     </div>
                   </div>
