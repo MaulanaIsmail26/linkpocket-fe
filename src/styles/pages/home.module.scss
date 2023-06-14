@@ -27,17 +27,31 @@
         border: 1px solid rgba(255, 255, 255, 0.18);
         border-radius: 20px;
 
+        
+      }
+
+      .cardLinkPocket {
+        // margin-top: 27px;
+        width: 450px;
+        height: 95%;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0));
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 25px;
+
         .titleCard {
+          margin-bottom: 6px;
+
           .iconApp {
             filter: drop-shadow(4px 4px 7px rgba(0, 0, 0, 0.5));
-            margin: -10px 0 0 15px;
+            margin: -17px 0 0 0;
             width: 170px;
           }
-
+      
           .btnLoginRegister {
-            margin: 7px 0 0 0;
-            width: 170px;
-
+      
             .btnLogin {
               width: 75px;
               height: 34px;
@@ -47,12 +61,12 @@
               border-color: #03e9f4;
               color: #03e9f4;
             }
-
+      
             .btnLogin:hover {
               background-color: #03e9f4;
               color: black;
             }
-
+      
             .btnRegister {
               width: 75px;
               height: 34px;
@@ -63,25 +77,13 @@
               color: black;
               background-color: #03e9f4;
             }
-
+      
             .btnRegister:hover {
               background-color: transparent;
               color: #03e9f4;
             }
           }
         }
-      }
-
-      .cardLinkPocket {
-        margin-top: 27px;
-        width: 450px;
-        height: 87%;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0));
-        -webkit-backdrop-filter: blur(20px);
-        backdrop-filter: blur(20px);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 25px;
 
         .profileCard {
           margin-bottom: 28px;
