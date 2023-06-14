@@ -17,10 +17,10 @@ export default function Home() {
             <div className={`row`}>
               <div className={`col-12 position-relative ${style.cardHolder}`}>
                 {/* ICON AND BUTTON LOGIN OR REGISTER */}
-                <div
+                {/* <div
                   className={`position-absolute top-0 start-50 translate-middle-x p-0 ${style.iconBtnAuth}`}
                 >
-                  {/* TITLE CARD */}
+                  TITLE CARD
                   <div className={`row ${style.titleCard}`}>
                     <div className={`col`}>
                       <div className="d-flex justify-content-between">
@@ -48,11 +48,38 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 {/* CARD FORM REGISTER */}
                 <div
                   className={`position-absolute top-50 start-50 translate-middle p-4 ${style.cardLinkPocket}`}
                 >
+                  <div className={`row ${style.titleCard}`}>
+                    <div className={`col`}>
+                      <div className="d-flex justify-content-between">
+                        <Image
+                          src={require("/public/images/Icon-app-nooutline.png")}
+                          className={` ${style.iconApp}`}
+                          // width={500}
+                          height={65}
+                          alt="Icon-Linkpocket"
+                        />
+                        <div className={` ${style.btnLoginRegister}`}>
+                          <button
+                            type="button"
+                            className={`btn btn-outline-primary ${style.btnLogin}`}
+                          >
+                            Login
+                          </button>
+                          <button
+                            type="button"
+                            className={`btn btn-primary ${style.btnRegister}`}
+                          >
+                            Register
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   {/* PROFILE SECTION */}
                   <div className={`row ${style.profileCard}`}>
                     <div className="col-4">
