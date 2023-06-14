@@ -51,7 +51,7 @@ export default function Home() {
                 </div> */}
                 {/* CARD FORM REGISTER */}
                 <div
-                  className={`position-absolute top-50 start-50 translate-middle p-4 ${style.cardLinkPocket}`}
+                  className={`position-absolute top-50 start-50 translate-middle px-4 ${style.cardLinkPocket}`}
                 >
                   <div className={`row ${style.titleCard}`}>
                     <div className={`col`}>
