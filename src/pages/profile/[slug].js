@@ -47,9 +47,110 @@ export default function Profile() {
                             <button
                               type="button"
                               className={`btn btn-primary ${style.btnShare}`}
+                              data-bs-toggle="modal"
+                              data-bs-target="#staticBackdrop1"
                             >
                               Edit
                             </button>
+                            {/* POPUP EDIT PROFILE */}
+                            <div
+                              className={`modal fade ${style.modalEdit}`}
+                              id="staticBackdrop1"
+                              data-bs-backdrop="static"
+                              data-bs-keyboard="false"
+                              tabindex="-1"
+                              aria-labelledby="staticBackdropLabel"
+                              aria-hidden="true"
+                            >
+                              <div className="modal-dialog modal-dialog-centered">
+                                <div
+                                  className={`modal-content ${style.modalContainer}`}
+                                >
+                                  <div className="modal-header">
+                                    <h1
+                                      className="modal-title fs-5"
+                                      id="staticBackdropLabel"
+                                    >
+                                      Edit Profile
+                                    </h1>
+                                    <button
+                                      type="button"
+                                      className="btn-close"
+                                      data-bs-dismiss="modal"
+                                      aria-label="Close"
+                                    ></button>
+                                  </div>
+                                  <div
+                                    className={`modal-body ${style.modalBody}`}
+                                  >
+                                    <div className={`row`}>
+                                      {/* EDIT PROFILE PICTURE */}
+                                      <div
+                                        className={`col-4 ${style.editProfilePicture}`}
+                                      >
+                                        <Image
+                                          src={require("/public/images/IMG_20230116_093528.jpg")}
+                                          className={` ${style.photoProfile}`}
+                                          // width={500}
+                                          // height={65}
+                                          alt="Icon-Linkpocket"
+                                        />
+                                      </div>
+                                      {/* EDIT USERNAME AND DESCRIPTION */}
+                                      <div
+                                        className={`col-8 ${style.editUsernameAndDesc}`}
+                                      >
+                                        <form>
+                                          <div className="mb-3">
+                                            <input
+                                              type="text"
+                                              className={`form-control ${style.formUsername}`}
+                                              placeholder="Title or Username"
+                                            />
+                                          </div>
+                                          <div className="mb-3">
+                                            <textarea
+                                              type="textarea"
+                                              className={`form-control ${style.formDesc}`}
+                                              placeholder="Description"
+                                              maxlength="60"
+                                            />
+                                          </div>
+                                        </form>
+                                      </div>
+                                    </div>
+                                    {/* EDIT BACKGROUND */}
+                                    <div
+                                      className={`row ${style.editBackground}`}
+                                    >
+                                      <div className="col-12">
+                                        <input
+                                          class="form-control"
+                                          type="file"
+                                          id="formFileMultiple"
+                                          multiple
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className="modal-footer">
+                                    <button
+                                      type="button"
+                                      className="btn btn-secondary"
+                                      data-bs-dismiss="modal"
+                                    >
+                                      Close
+                                    </button>
+                                    <button
+                                      type="button"
+                                      className="btn btn-primary"
+                                    >
+                                      Understood
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div className="col-6 d-grid gap-2">
                             <button
@@ -65,16 +166,117 @@ export default function Profile() {
                   </div>
 
                   {/* BUTTON ADD LINK SOCMED */}
-                  <div
-                    className={`row ${style.btnAddLink}`}
-                  >
+                  <div className={`row ${style.btnAddLink}`}>
                     <div className="col-12 d-grid gap-2">
                       <button
                         type="button"
                         className={`btn btn-primary ${style.btn}`}
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop2"
                       >
                         {"[+] Add Your Link"}
                       </button>
+                      {/* POPUP EDIT PROFILE */}
+                      <div
+                        className={`modal fade ${style.modalAddLink}`}
+                        id="staticBackdrop2"
+                        data-bs-backdrop="static"
+                        data-bs-keyboard="false"
+                        tabindex="-1"
+                        aria-labelledby="staticBackdropLabel"
+                        aria-hidden="true"
+                      >
+                        <div className="modal-dialog modal-dialog-centered">
+                          <div
+                            className={`modal-content ${style.modalContainer}`}
+                          >
+                            <div
+                              className="modal-header"
+                              style={{ backgroundColor: "#03e9f4" }}
+                            >
+                              <h1
+                                className="modal-title fs-5"
+                                id="staticBackdropLabel"
+                              >
+                                Add Your Link
+                              </h1>
+                              <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div className={`modal-body ${style.modalBody}`}>
+                              {/* EDIT USERNAME AND DESCRIPTION */}
+                              <div className={`row`}>
+                                <div className={`col-12 ${style.addLink}`}>
+                                  <form>
+                                    <div className={`mb-2 ${style.userbox}`}>
+                                      <input type="text" name="" required="" />
+                                      <label>Title Link</label>
+                                    </div>
+                                    <div className={`${style.userbox}`}>
+                                      <input
+                                        type="url"
+                                        // name=""
+                                        // required=""
+                                      />
+                                      <label>Link</label>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                              {/* ICON OPTION */}
+                              <div className={`dropdown ${style.iconOption}`}>
+                                <div className="dropdown">
+                                  <label className="mb-2">Icon</label>
+                                  <select
+                                    className="form-select"
+                                    aria-label="Default select example"
+                                    // onChange={(e) => {
+                                    //   if (e.target.value === "") {
+                                    //     fetchSortByName(e.target.value);
+                                    //   } else if (
+                                    //     e.target.value === "descending"
+                                    //   ) {
+                                    //     fetchSortByName(e.target.value);
+                                    //   } else {
+                                    //     fetchSortByDate(sortByDate);
+                                    //   }
+                                    // }}
+                                  >
+                                    <option selected disabled>
+                                      Choose a logo
+                                    </option>
+                                    <option value="">Facebook</option>
+                                    <option value="">WhatsApp</option>
+                                    <option value="">Instagram</option>
+                                    <option value="">Twitter</option>
+                                    <option value="">E-mail</option>
+                                    <option value="">YouTube</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              className="modal-footer"
+                              style={{ backgroundColor: "#03e9f4" }}
+                            >
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                              <button type="button" className="btn btn-primary">
+                                Understood
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 

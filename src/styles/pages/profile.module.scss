@@ -36,7 +36,7 @@
         height: 95%;
         padding-top: 20px;
         padding-bottom: 20px;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0));
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0));
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
@@ -124,6 +124,59 @@
             border-color: #03e9f4;
             color: #03e9f4;
           }
+
+          .modalEdit {
+            .modalContainer {
+              // background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0));
+              // -webkit-backdrop-filter: blur(20px);
+              // backdrop-filter: blur(40px);
+              box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.9);
+              border: 1px solid rgba(37, 37, 37, 0.8);
+              background-color: #00d3df;
+
+              .modalBody {
+                .editProfilePicture {
+                  .photoProfile {
+                    width: 120px;
+                    height: 120px;
+                    object-fit: cover;
+                    border: 2px solid #ffffff;
+                    border-radius: 15px;
+                  }
+                }
+                .editUsernameAndDesc {
+                  input {
+                    padding-left: 20px;
+                    color: #242424;
+                    font-size: 14px;
+                    border-color: white;
+                    border-radius: 15px;
+                  }
+
+                  .formDesc {
+                    padding: 8px;
+                    height: 62px;
+                    resize: none;
+                    padding-left: 20px;
+                    color: #242424;
+                    font-size: 14px;
+                    border-color: white;
+                    border-radius: 8px;
+                  }
+
+                  input:focus,
+                  .formDesc:focus {
+                    box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.11);
+                    border-color: #00d3df;
+                  }
+
+                  .formUsername {
+                    padding: 9px 0 9px 20px;
+                  }
+                }
+              }
+            }
+          }
         }
 
         .btnAddLink {
@@ -147,6 +200,95 @@
             background-color: #03e9f4;
             border-color: #03e9f4;
             color: rgb(51, 45, 45);
+          }
+
+          .modalAddLink {
+            .modalContainer {
+              // background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+              // -webkit-backdrop-filter: blur(20px);
+              // backdrop-filter: blur(40px);
+              box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.9);
+              border: 1px solid rgba(37, 37, 37, 0.8);
+              // background-color: #00d3df;
+
+              .modalBody {
+                padding: 40px 20px 20px 20px;
+                .addLink {
+                  .userbox {
+                    position: relative;
+                
+                    input {
+                      width: 100%;
+                      padding: 0px 0 10px 0;
+                      margin-top: 15px;
+                      font-size: 16px;
+                      color: black;
+                      margin-bottom: 30px;
+                      border: none;
+                      border-bottom: 1px solid black;
+                      outline: none;
+                      background: transparent;
+                    }
+                
+                    label {
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      padding: 10px 0;
+                      font-size: 16px;
+                      color: black;
+                      pointer-events: none;
+                      transition: .5s;
+                    }
+                
+                    input:focus {
+                      top: -20px;
+                      left: 0;
+                      color: black;
+                      font-size: 16px;
+                      border-bottom: 1px solid #03e9f4;
+                    }
+                
+                    label {
+                      top: -20px;
+                      left: 0;
+                      color: black;
+                      font-size: 16px;
+                    }
+                
+                    input:valid {
+                      top: -20px;
+                      left: 0;
+                      color: black;
+                      font-size: 16px;
+                    }
+                
+                    label {
+                      top: -20px;
+                      left: 0;
+                      color: black;
+                      font-size: 16px;
+                    }
+                  }
+                }
+
+                .iconOption {
+                  label {
+                    font-size: 16px;
+                    color: black;
+                    pointer-events: none;
+                  }
+
+                  select {
+                    width: 225px;
+                  }
+
+                  select:focus {
+                    box-shadow: 0px 4px 10px 3px rgba(0, 0, 0, 0.11);
+                  }
+                }
+              }
+            }
           }
         }
 
