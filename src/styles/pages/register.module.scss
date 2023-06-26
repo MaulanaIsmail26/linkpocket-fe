@@ -18,7 +18,7 @@
 
       .cardFormRegister {
         width: 400px;
-        height: 472px;
+        height: 560px;
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.28), rgba(255, 255, 255, 0));
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
@@ -29,7 +29,7 @@
         .titleCard {
           .iconApp {
             filter: drop-shadow(4px 4px 7px rgba(0, 0, 0, 0.5));
-            margin: 20px 0 10px 0;
+            margin: 5px 0 10px 0;
           }
 
           h5 {
@@ -67,6 +67,17 @@
 
           .userbox {
             position: relative;
+            height: 80px;
+
+            p {
+                background-color: #03e9f4;
+                color: red;
+                font-weight: 500;
+                font-size: 13px;
+                padding: 0 5px 2px 5px;
+                border-radius: 3px;
+                width: max-content;
+              }
 
             input {
               width: 100%;
@@ -74,7 +85,7 @@
               margin-top: 15px;
               font-size: 16px;
               color: #fff;
-              margin-bottom: 30px;
+              // margin-bottom: 30px;
               border: none;
               border-bottom: 1px solid #fff;
               outline: none;
@@ -134,7 +145,10 @@
               overflow: hidden;
               transition: .5s;
               margin-top: 10px;
-              letter-spacing: 4px
+              letter-spacing: 4px;
+              background-color: transparent;
+              border: 0;
+              box-shadow: none;
             }
 
             .btnSignUp:hover {
@@ -254,5 +268,52 @@
         }
       }
     }
+
+    // .notification {
+    //   position: absolute;
+    //   bottom: 50px;
+    //   left: 50px;
+    //   width: max-content;
+    //   padding: 20px 15px;
+    //   border-radius: 4px;
+    //   background-color: #141619;
+    //   color: #f6f5f9;
+    //   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    //   transform: translateY(30px);
+    //   opacity: 0;
+    //   visibility: hidden;
+    //   animation: fade-in 4s linier forwards;
+
+    //   .notificationProgress {
+    //     position: absolute;
+    //     left: 5px;
+    //     bottom: 5px;
+    //     width: calc(100% - 10%);
+    //     height: 3px;
+    //     transform: scaleX(0);
+    //     transform-origin: left;
+    //     background-image: linear-gradient(to right, #539bdb, #3250bf);
+    //     border-radius: inherit;
+    //     animation: load 3s 0.25s linear forwards;
+    //   }
+    // }
+
+    // @keyframes fade-in {
+    //   5% {
+    //     opacity: 1;
+    //     visibility: visible;
+    //     transform: translateY(0);
+    //   }
+    //   90% {
+    //     opacity: 1;
+    //     transform: translateY();
+    //   }
+    // }
+
+    // @keyframes load {
+    //   to {
+    //     transform: scaleX(1);
+    //   }
+    // }
   }
 }
