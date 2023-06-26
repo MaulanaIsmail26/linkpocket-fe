@@ -1,10 +1,98 @@
 /* eslint-disable @next/next/no-img-element */
+import React from "react";
 import Head from "next/head";
 import style from "@/styles/pages/login.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import { setCookie, getCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  const router = useRouter();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
+  const [errorEmail, setErrorEmail] = React.useState(null);
+  const [errorPass, setErrorPass] = React.useState(null);
+  const [errUserNotExist, setErrUserNotExist] = React.useState(false);
+  const [errEmail, setErrEmail] = React.useState(false);
+  const [errPassword, setErrPassword] = React.useState(false);
+  const [errPasswordNull, setErrPasswordNull] = React.useState(false);
+
+  // FUNCTION LOGIN
+  const handleSubmit = async () => {
+    try {
+      setIsLoading(true);
+
+      const connect = await axios.post("/api/login", {
+        email,
+        password,
+      });
+
+      setIsLoading(false);
+      setError(null);
+
+      setErrEmail(false);
+      setErrUserNotExist(false);
+      setErrPassword(false);
+      setErrPasswordNull(false);
+
+      setCookie("token", connect?.data?.data?.token);
+      setCookie("profile", JSON.stringify(connect?.data?.data?.result));
+      localStorage.setItem("token", connect?.data?.data?.token);
+      localStorage.setItem(
+        "profile",
+        JSON.stringify(connect?.data?.data?.result)
+      );
+
+      router.push("/profile/test");
+      // console.log(connect);
+    } catch (error) {
+      // console.log(error?.response?.data?.messages);
+      // error?.response?.data?.message?.message
+      if (error?.response?.data?.messages?.email?.message) {
+        setErrorEmail(
+          error?.response?.data?.messages?.email?.message ??
+            "Something wrong in our server"
+        );
+        setErrEmail(true);
+        setErrUserNotExist(false);
+        setErrPassword(false);
+        setErrPasswordNull(false);
+      } else if (error?.response?.data?.messages?.password?.message) {
+        setErrorPass(
+          error?.response?.data?.messages?.password?.message ??
+            "Something wrong in our server"
+        );
+        setErrPasswordNull(true);
+        setErrPassword(false);
+        setErrUserNotExist(false);
+        setErrEmail(false);
+      } else if (error?.response?.data?.messages == "User not existt") {
+        setError(
+          error?.response?.data?.messages ?? "Something wrong in our server"
+        );
+        setErrUserNotExist(true);
+        setErrEmail(false);
+        setErrPasswordNull(false);
+        setErrPassword(false);
+      } else if (error?.response?.data?.messages == "Wrong password") {
+        setError(
+          error?.response?.data?.messages ?? "Something wrong in our server"
+        );
+        setErrPassword(true);
+        setErrPasswordNull(false);
+        setErrUserNotExist(false);
+        setErrEmail(false);
+      } else {
+        ("Something wrong in our server");
+      }
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -45,46 +133,60 @@ export default function Login() {
                   {/* FORM REGISTER */}
                   <div className={`row ${style.formLogin}`}>
                     <div className={`col`}>
-                      {/* <form>
-                        <div className="mb-3">
-                          <input
-                            type="email"
-                            class="form-control"
-                            id="email"
-                            aria-describedby="email"
-                            placeholder="Email"
-                            // onChange={(e) => setEmail(e.target.value)}
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <input
-                            type="password"
-                            class="form-control"
-                            id="phone"
-                            aria-describedby="password"
-                            placeholder="Password"
-                            // onChange={(e) => setPassword(e.target.value)}
-                          />
-                        </div>
-                      </form> */}
                       <form>
                         <div className={`mb-4 ${style.userbox}`}>
-                          <input type="text" name="" required="" />
+                          <input
+                            type="text"
+                            name=""
+                            required=""
+                            onChange={(e) => setEmail(e.target.value)}
+                            onKeyDown={(event) => {
+                              if (event.key === "Enter") {
+                                handleSubmit;
+                              }
+                            }}
+                          />
                           <label>Email</label>
+                          {errUserNotExist && !errPassword ? (
+                            <p className="mt-1">{`!${error}`}</p>
+                          ) : null}
+                          {errEmail ? (
+                            <p className="mt-1">{`!${errorEmail}`}</p>
+                          ) : null}
                         </div>
                         <div className={`${style.userbox}`}>
-                          <input type="password" name="" required="" />
+                          <input
+                            type="password"
+                            name=""
+                            required=""
+                            onChange={(e) => setPassword(e.target.value)}
+                            onKeyDown={(event) => {
+                              if (event.key === "Enter") {
+                                handleSubmit;
+                              }
+                            }}
+                          />
                           <label>Password</label>
+                          {errPassword ? (
+                            <p className="mt-1">{`!${error}`}</p>
+                          ) : null}
+                          {errPasswordNull && !errPassword ? (
+                            <p className="mt-1">{`!${errorPass}`}</p>
+                          ) : null}
                         </div>
                         <div className={`row ${style.areaLoginAndSignUp}`}>
                           <div className={`col-12`}>
-                            <a href="" className={`${style.btnLogin}`}>
+                            <button
+                              className={`${style.btnLogin}`}
+                              onClick={handleSubmit}
+                              disabled={isLoading}
+                            >
                               <span></span>
                               <span></span>
                               <span></span>
                               <span></span>
-                              login
-                            </a>
+                              {isLoading ? "Loading..." : "Login"}
+                            </button>
                             <p className={`text-center ${style.textSignUp}`}>
                               Anda belum punya akun?{" "}
                               <Link

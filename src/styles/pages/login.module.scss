@@ -67,6 +67,17 @@
 
           .userbox {
             position: relative;
+            height: 80px;
+
+            p {
+              background-color: #03e9f4;
+              color: red;
+              font-weight: 500;
+              font-size: 13px;
+              padding: 0 5px 2px 5px;
+              border-radius: 3px;
+              width: max-content;
+            }
 
             input {
               width: 100%;
@@ -74,7 +85,7 @@
               margin-top: 15px;
               font-size: 16px;
               color: #fff;
-              margin-bottom: 30px;
+              // margin-bottom: 30px;
               border: none;
               border-bottom: 1px solid #fff;
               outline: none;
@@ -134,7 +145,10 @@
               overflow: hidden;
               transition: .5s;
               margin-top: 10px;
-              letter-spacing: 4px
+              letter-spacing: 4px;
+              background-color: transparent;
+              border: 0;
+              box-shadow: none;
             }
 
             .btnLogin:hover {
