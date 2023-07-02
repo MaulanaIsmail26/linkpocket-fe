@@ -11,7 +11,7 @@ export default function Navbar() {
             src={require("/public/images/Icon-app-nooutline.png")}
             className={` ${style.iconApp}`}
             // width={500}
-            height={65}
+            // height={65}
             alt="Icon-Linkpocket"
           />
           <div className={` ${style.btnLoginRegister}`}>

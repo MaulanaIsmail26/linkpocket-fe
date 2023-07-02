@@ -19,14 +19,14 @@ export default function Profile() {
               <div className={`col-12 position-relative ${style.cardHolder}`}>
                 {/* CARD FORM REGISTER */}
                 <div
-                  className={`position-absolute top-50 start-50 translate-middle px-4 ${style.cardLinkPocket}`}
+                  className={`position-absolute top-50 start-50 translate-middle px-sm-4 px-3 ${style.cardLinkPocket}`}
                 >
                   <div className={`row ${style.titleCard}`}>
                     <Navbar />
                   </div>
                   {/* PROFILE SECTION */}
                   <div className={`row ${style.profileCard}`}>
-                    <div className="col-4">
+                    <div className="col-sm-4 col-5">
                       <Image
                         src={require("/public/images/IMG_20230116_093528.jpg")}
                         className={` ${style.photoProfile}`}
@@ -35,7 +35,7 @@ export default function Profile() {
                         alt="Icon-Linkpocket"
                       />
                     </div>
-                    <div className="col-8">
+                    <div className="col-sm-8 col-7">
                       <h3 className={`${style.username}`}>Maulana Ismail</h3>
                       <p className={`${style.desc}`}>
                         Terjemahkan teks & berkas dokumen secara instan.
