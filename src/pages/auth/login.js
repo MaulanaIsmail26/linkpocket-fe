@@ -110,7 +110,7 @@ export default function Login() {
               >
                 {/* CARD FORM LOGIN */}
                 <div
-                  className={`position-absolute top-50 end-0 translate-middle-y px-5 ${style.cardFormLogin}`}
+                  className={`position-absolute top-50 end-0 translate-middle-y px-sm-5 px-4 ${style.cardFormLogin}`}
                 >
                   {/* TITLE CARD */}
                   <div className={`row ${style.titleCard}`}>
