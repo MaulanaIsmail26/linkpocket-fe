@@ -110,7 +110,7 @@ export default function Register() {
               >
                 {/* CARD FORM REGISTER */}
                 <div
-                  className={`position-absolute top-50 end-0 translate-middle-y px-5 ${style.cardFormRegister}`}
+                  className={`position-absolute top-50 end-0 translate-middle-y px-sm-5 px-4 ${style.cardFormRegister}`}
                 >
                   {/* TITLE CARD */}
                   <div className={`row ${style.titleCard}`}>

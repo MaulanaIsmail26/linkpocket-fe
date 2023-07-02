@@ -5,7 +5,7 @@
   .register {
     background-image: url("../../../public/images/background-imgae-auth.jpg");
     background-size: cover;
-    background-position: 0 -40px;
+    // background-position: 0 -40px;
     background-repeat: no-repeat;
     // background: rgb(0, 212, 255);
     //   background: linear-gradient(130deg, rgba(0, 212, 255, 1) 0%, rgba(9, 9, 121, 1) 65%, rgba(2, 0, 36, 1) 100%);
@@ -265,6 +265,12 @@
               bottom: 100%;
             }
           }
+        }
+      }
+
+      @media screen and (max-width:600px) {
+        .cardFormRegister {
+          width: 100%;
         }
       }
     }
