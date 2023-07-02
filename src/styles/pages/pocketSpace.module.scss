@@ -40,10 +40,10 @@
             height: 100%;
           }
 
-          @media screen and (max-width:767px) {
+          @media screen and (max-width:600px) {
             .iconApp {
-              width: 150px;
-              margin: -13px 0 0 -3px;
+              width: 140px;
+              margin: -11px 0 0 -3px;
             }
           }
 
@@ -58,7 +58,7 @@
               color: #03e9f4;
             }
 
-            @media screen and (max-width:767px) {
+            @media screen and (max-width:600px) {
               .btnLogin{
                 margin-left: -18px;
               }
@@ -98,7 +98,7 @@
             border-radius: 15px;
           }
 
-          @media screen and (max-width:767px) {
+          @media screen and (max-width:600px) {
             .photoProfile {
               width: 130px;
               height: 130px;
@@ -117,7 +117,7 @@
             margin-bottom: 9px;
           }
 
-          @media screen and (max-width:767px) {
+          @media screen and (max-width:600px) {
             .desc {
               font-size: 14px;
               margin-bottom: 6px;
@@ -164,14 +164,14 @@
           }
         }
 
-        @media screen and (max-width:767px) {
+        @media screen and (max-width:600px) {
           .linkSection {
             height: 70%;
           }
         }
       }
 
-      @media screen and (max-width:767px) {
+      @media screen and (max-width:600px) {
         .cardLinkPocket {
           width: 100%;
         }
