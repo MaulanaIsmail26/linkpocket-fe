@@ -27,7 +27,7 @@ export default function Home() {
                           src={require("/public/images/Icon-app-nooutline.png")}
                           className={` ${style.iconApp}`}
                           // width={500}
-                          height={65}
+                          // height={65}
                           alt="Icon-Linkpocket"
                         />
                         <div className={` ${style.btnLoginRegister}`}>
@@ -49,7 +49,7 @@ export default function Home() {
                   </div>
                   {/* PROFILE SECTION */}
                   <div className={`row ${style.profileCard}`}>
-                    <div className="col-4">
+                    <div className="col-sm-4 col-5">
                       <Image
                         src={require("/public/images/IMG_20230116_093528.jpg")}
                         className={` ${style.photoProfile}`}
@@ -58,7 +58,7 @@ export default function Home() {
                         alt="Icon-Linkpocket"
                       />
                     </div>
-                    <div className="col-8">
+                    <div className="col-sm-8 col-7">
                       <h3 className={`${style.username}`}>Maulana Ismail</h3>
                       <p className={`${style.desc}`}>
                         Terjemahkan teks & berkas dokumen secara instan.
@@ -69,7 +69,7 @@ export default function Home() {
                           type="button"
                           className={`btn btn-primary ${style.btnShare}`}
                         >
-                          Share your Linkpocket card
+                          Create your LinkPocket
                         </button>
                       </div>
                     </div>
