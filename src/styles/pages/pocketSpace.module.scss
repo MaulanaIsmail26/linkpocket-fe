@@ -163,6 +163,12 @@
             border-color: #02c0ca;
           }
         }
+
+        @media screen and (max-width:767px) {
+          .linkSection {
+            height: 70%;
+          }
+        }
       }
 
       @media screen and (max-width:767px) {
