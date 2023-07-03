@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import style from "@/styles/pages/profile.module.scss";
+import Link from 'next/link';
 
 export default function Navbar() {
   return (
@@ -15,18 +16,20 @@ export default function Navbar() {
             alt="Icon-Linkpocket"
           />
           <div className={` ${style.btnLoginRegister}`}>
-            <button
+            <Link
               type="button"
               className={`btn btn-outline-primary ${style.btnLogin}`}
+              href={"/auth/login"}
             >
               Login
-            </button>
-            <button
+            </Link>
+            <Link
               type="button"
               className={`btn btn-primary ${style.btnRegister}`}
+              href={"/auth/register"}
             >
               Register
-            </button>
+            </Link>
           </div>
         </div>
       </div>

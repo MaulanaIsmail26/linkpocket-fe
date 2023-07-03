@@ -2,8 +2,39 @@ import Head from "next/head";
 import Image from "next/image";
 import style from "@/styles/pages/profile.module.scss";
 import Navbar from "components/organisms/navbar";
+import React from "react";
+import axios from "axios";
+import BtnLink from "components/molecules/btnLink";
 
 export default function Profile() {
+  // const [socmed, setSocmed] = React.useState("");
+  const [socmed, setSocmed] = React.useState([]);
+  const [title, setTitle] = React.useState([]);
+  const [photo, setPhoto] = React.useState([]);
+  const [desc, setDesc] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/space`, {
+        headers: {
+          // "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(({ data }) => {
+        console.log(data?.data[0]?.title);
+        setSocmed(data?.data);
+        setTitle(data?.data[0]?.title);
+        setPhoto(data?.data[0]?.photo_profile);
+        setDesc(data?.data[0]?.desc);
+      })
+      .catch(() => setSocmed([]))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
   return (
     <>
       <Head>
@@ -21,385 +52,437 @@ export default function Profile() {
                 <div
                   className={`position-absolute top-50 start-50 translate-middle px-sm-4 px-3 ${style.cardLinkPocket}`}
                 >
-                  <div className={`row ${style.titleCard}`}>
-                    <Navbar />
-                  </div>
-                  {/* PROFILE SECTION */}
-                  <div className={`row ${style.profileCard}`}>
-                    <div className="col-sm-4 col-5">
-                      <Image
-                        src={require("/public/images/IMG_20230116_093528.jpg")}
-                        className={` ${style.photoProfile}`}
-                        // width={500}
-                        // height={65}
-                        alt="Icon-Linkpocket"
-                      />
+                  {isLoading ? (
+                    <div className="position-absolute top-50 start-50 translate-middle">
+                      <div className="d-flex justify-content-center">
+                        <Image
+                          src={require("/public/images/Icon-app-nooutline.png")}
+                          className={` ${style.iconApp}`}
+                          width={200}
+                          // height={65}
+                          alt="Icon-Linkpocket"
+                        />
+                      </div>
+                      <div className="d-flex justify-content-center">
+                        <div
+                          class="spinner-border text-info "
+                          style={{
+                            width: "5rem",
+                            height: "5rem",
+                            margin: "auto",
+                          }}
+                          role="status"
+                        >
+                          <span class="visually-hidden ">Loading...</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="col-sm-8 col-7">
-                      <h3 className={`${style.username}`}>Maulana Ismail</h3>
-                      <p className={`${style.desc}`}>
-                        Terjemahkan teks & berkas dokumen secara instan.
-                        Terjemahan.
-                      </p>
-                      <div className="d-grid gap-2">
-                        <div className="row">
-                          <div className="col-6 d-grid gap-2">
-                            <button
-                              type="button"
-                              className={`btn btn-primary ${style.btnShare}`}
-                              data-bs-toggle="modal"
-                              data-bs-target="#staticBackdrop1"
-                            >
-                              Edit
-                            </button>
-                            {/* POPUP EDIT PROFILE */}
-                            <div
-                              className={`modal fade ${style.modalEdit}`}
-                              id="staticBackdrop1"
-                              data-bs-backdrop="static"
-                              data-bs-keyboard="false"
-                              tabindex="-1"
-                              aria-labelledby="staticBackdropLabel"
-                              aria-hidden="true"
-                            >
-                              <div className="modal-dialog modal-dialog-centered">
-                                <div
-                                  className={`modal-content ${style.modalContainer}`}
+                  ) : (
+                    <>
+                      <div className={`row ${style.titleCard}`}>
+                        <Navbar />
+                      </div>
+                      {/* PROFILE SECTION */}
+                      <div className={`row ${style.profileCard}`}>
+                        <div className="col-sm-4 col-5">
+                          <Image
+                            // src={require("/public/images/IMG_20230116_093528.jpg")}
+                            src={
+                              photo ||
+                              `https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1200px-User-avatar.svg.png`
+                            }
+                            className={` ${style.photoProfile}`}
+                            width={130}
+                            height={130}
+                            alt="photo-profile"
+                          />
+                        </div>
+                        <div className="col-sm-8 col-7">
+                          <h3 className={`${style.username}`}>
+                            {title || "TITLE"}
+                          </h3>
+                          <p className={`${style.desc}`}>
+                            {desc || "DESCRIPTION"}
+                          </p>
+                          <div className="d-grid gap-2">
+                            <div className="row">
+                              <div className="col-6 d-grid gap-2">
+                                <button
+                                  type="button"
+                                  className={`btn btn-primary ${style.btnShare}`}
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#staticBackdrop1"
                                 >
-                                  <div className="modal-header">
-                                    <h1
-                                      className="modal-title fs-5"
-                                      id="staticBackdropLabel"
-                                    >
-                                      Edit Profile
-                                    </h1>
-                                    <button
-                                      type="button"
-                                      className="btn-close"
-                                      data-bs-dismiss="modal"
-                                      aria-label="Close"
-                                    ></button>
-                                  </div>
-                                  <div
-                                    className={`modal-body ${style.modalBody}`}
-                                  >
-                                    <div className={`row`}>
-                                      {/* EDIT PROFILE PICTURE */}
-                                      <div
-                                        className={`col-4 ${style.editProfilePicture}`}
-                                      >
-                                        <Image
-                                          src={require("/public/images/IMG_20230116_093528.jpg")}
-                                          className={` ${style.photoProfile}`}
-                                          // width={500}
-                                          // height={65}
-                                          alt="Icon-Linkpocket"
-                                        />
-                                      </div>
-                                      {/* EDIT USERNAME AND DESCRIPTION */}
-                                      <div
-                                        className={`col-8 ${style.editUsernameAndDesc}`}
-                                      >
-                                        <form>
-                                          <div className="mb-3">
-                                            <input
-                                              type="text"
-                                              className={`form-control ${style.formUsername}`}
-                                              placeholder="Title or Username"
-                                            />
-                                          </div>
-                                          <div className="mb-3">
-                                            <textarea
-                                              type="textarea"
-                                              className={`form-control ${style.formDesc}`}
-                                              placeholder="Description"
-                                              maxlength="60"
-                                            />
-                                          </div>
-                                        </form>
-                                      </div>
-                                    </div>
-                                    {/* EDIT BACKGROUND */}
+                                  Edit
+                                </button>
+                                {/* POPUP EDIT PROFILE */}
+                                <div
+                                  className={`modal fade ${style.modalEdit}`}
+                                  id="staticBackdrop1"
+                                  data-bs-backdrop="static"
+                                  data-bs-keyboard="false"
+                                  tabindex="-1"
+                                  aria-labelledby="staticBackdropLabel"
+                                  aria-hidden="true"
+                                >
+                                  <div className="modal-dialog modal-dialog-centered">
                                     <div
-                                      className={`row ${style.editBackground}`}
+                                      className={`modal-content ${style.modalContainer}`}
                                     >
-                                      <div className="col-12">
-                                        <input
-                                          class="form-control"
-                                          type="file"
-                                          id="formFileMultiple"
-                                          multiple
-                                        />
+                                      <div className="modal-header">
+                                        <h1
+                                          className="modal-title fs-5"
+                                          id="staticBackdropLabel"
+                                        >
+                                          Edit Profile
+                                        </h1>
+                                        <button
+                                          type="button"
+                                          className="btn-close"
+                                          data-bs-dismiss="modal"
+                                          aria-label="Close"
+                                        ></button>
+                                      </div>
+                                      <div
+                                        className={`modal-body ${style.modalBody}`}
+                                      >
+                                        <div className={`row`}>
+                                          {/* EDIT PROFILE PICTURE */}
+                                          <div
+                                            className={`col-4 ${style.editProfilePicture}`}
+                                          >
+                                            <Image
+                                              src={require("/public/images/IMG_20230116_093528.jpg")}
+                                              className={` ${style.photoProfile}`}
+                                              // width={500}
+                                              // height={65}
+                                              alt="Icon-Linkpocket"
+                                            />
+                                          </div>
+                                          {/* EDIT USERNAME AND DESCRIPTION */}
+                                          <div
+                                            className={`col-8 ${style.editUsernameAndDesc}`}
+                                          >
+                                            <form>
+                                              <div className="mb-3">
+                                                <input
+                                                  type="text"
+                                                  className={`form-control ${style.formUsername}`}
+                                                  placeholder="Title or Username"
+                                                />
+                                              </div>
+                                              <div className="mb-3">
+                                                <textarea
+                                                  type="textarea"
+                                                  className={`form-control ${style.formDesc}`}
+                                                  placeholder="Description"
+                                                  maxlength="60"
+                                                />
+                                              </div>
+                                            </form>
+                                          </div>
+                                        </div>
+                                        {/* EDIT BACKGROUND */}
+                                        <div
+                                          className={`row ${style.editBackground}`}
+                                        >
+                                          <div className="col-12">
+                                            <input
+                                              class="form-control"
+                                              type="file"
+                                              id="formFileMultiple"
+                                              multiple
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div className="modal-footer">
+                                        <button
+                                          type="button"
+                                          className="btn btn-secondary"
+                                          data-bs-dismiss="modal"
+                                        >
+                                          Close
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="btn btn-primary"
+                                        >
+                                          Understood
+                                        </button>
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="modal-footer">
-                                    <button
-                                      type="button"
-                                      className="btn btn-secondary"
-                                      data-bs-dismiss="modal"
-                                    >
-                                      Close
-                                    </button>
-                                    <button
-                                      type="button"
-                                      className="btn btn-primary"
-                                    >
-                                      Understood
-                                    </button>
+                                </div>
+                              </div>
+                              <div className="col-6 d-grid gap-2">
+                                <button
+                                  type="button"
+                                  className={`btn btn-primary ${style.btnShare}`}
+                                >
+                                  Share
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* BUTTON ADD LINK SOCMED */}
+                      <div className={`row ${style.btnAddLink}`}>
+                        <div className="col-12 d-grid gap-2">
+                          <button
+                            type="button"
+                            className={`btn btn-primary ${style.btn}`}
+                            data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop2"
+                          >
+                            {"[+] Add Your Link"}
+                          </button>
+                          {/* POPUP EDIT PROFILE */}
+                          <div
+                            className={`modal fade ${style.modalAddLink}`}
+                            id="staticBackdrop2"
+                            data-bs-backdrop="static"
+                            data-bs-keyboard="false"
+                            tabindex="-1"
+                            aria-labelledby="staticBackdropLabel"
+                            aria-hidden="true"
+                          >
+                            <div className="modal-dialog modal-dialog-centered">
+                              <div
+                                className={`modal-content ${style.modalContainer}`}
+                              >
+                                <div
+                                  className="modal-header"
+                                  style={{ backgroundColor: "#03e9f4" }}
+                                >
+                                  <h1
+                                    className="modal-title fs-5"
+                                    id="staticBackdropLabel"
+                                  >
+                                    Add Your Link
+                                  </h1>
+                                  <button
+                                    type="button"
+                                    className="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
+                                </div>
+                                <div
+                                  className={`modal-body ${style.modalBody}`}
+                                >
+                                  {/* EDIT USERNAME AND DESCRIPTION */}
+                                  <div className={`row`}>
+                                    <div className={`col-12 ${style.addLink}`}>
+                                      <form>
+                                        <div
+                                          className={`mb-2 ${style.userbox}`}
+                                        >
+                                          <input
+                                            type="text"
+                                            name=""
+                                            required=""
+                                          />
+                                          <label>Title Link</label>
+                                        </div>
+                                        <div className={`${style.userbox}`}>
+                                          <input
+                                            type="url"
+                                            // name=""
+                                            // required=""
+                                          />
+                                          <label>Link</label>
+                                        </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                  {/* ICON OPTION */}
+                                  <div
+                                    className={`dropdown ${style.iconOption}`}
+                                  >
+                                    <div className="dropdown">
+                                      <label className="mb-2">Icon</label>
+                                      <select
+                                        className="form-select"
+                                        aria-label="Default select example"
+                                        // onChange={(e) => {
+                                        //   if (e.target.value === "") {
+                                        //     fetchSortByName(e.target.value);
+                                        //   } else if (
+                                        //     e.target.value === "descending"
+                                        //   ) {
+                                        //     fetchSortByName(e.target.value);
+                                        //   } else {
+                                        //     fetchSortByDate(sortByDate);
+                                        //   }
+                                        // }}
+                                      >
+                                        <option selected disabled>
+                                          Choose a logo
+                                        </option>
+                                        <option value="">Facebook</option>
+                                        <option value="">WhatsApp</option>
+                                        <option value="">Instagram</option>
+                                        <option value="">Twitter</option>
+                                        <option value="">E-mail</option>
+                                        <option value="">YouTube</option>
+                                      </select>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-6 d-grid gap-2">
-                            <button
-                              type="button"
-                              className={`btn btn-primary ${style.btnShare}`}
-                            >
-                              Share
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* BUTTON ADD LINK SOCMED */}
-                  <div className={`row ${style.btnAddLink}`}>
-                    <div className="col-12 d-grid gap-2">
-                      <button
-                        type="button"
-                        className={`btn btn-primary ${style.btn}`}
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop2"
-                      >
-                        {"[+] Add Your Link"}
-                      </button>
-                      {/* POPUP EDIT PROFILE */}
-                      <div
-                        className={`modal fade ${style.modalAddLink}`}
-                        id="staticBackdrop2"
-                        data-bs-backdrop="static"
-                        data-bs-keyboard="false"
-                        tabindex="-1"
-                        aria-labelledby="staticBackdropLabel"
-                        aria-hidden="true"
-                      >
-                        <div className="modal-dialog modal-dialog-centered">
-                          <div
-                            className={`modal-content ${style.modalContainer}`}
-                          >
-                            <div
-                              className="modal-header"
-                              style={{ backgroundColor: "#03e9f4" }}
-                            >
-                              <h1
-                                className="modal-title fs-5"
-                                id="staticBackdropLabel"
-                              >
-                                Add Your Link
-                              </h1>
-                              <button
-                                type="button"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                              ></button>
-                            </div>
-                            <div className={`modal-body ${style.modalBody}`}>
-                              {/* EDIT USERNAME AND DESCRIPTION */}
-                              <div className={`row`}>
-                                <div className={`col-12 ${style.addLink}`}>
-                                  <form>
-                                    <div className={`mb-2 ${style.userbox}`}>
-                                      <input type="text" name="" required="" />
-                                      <label>Title Link</label>
-                                    </div>
-                                    <div className={`${style.userbox}`}>
-                                      <input
-                                        type="url"
-                                        // name=""
-                                        // required=""
-                                      />
-                                      <label>Link</label>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                              {/* ICON OPTION */}
-                              <div className={`dropdown ${style.iconOption}`}>
-                                <div className="dropdown">
-                                  <label className="mb-2">Icon</label>
-                                  <select
-                                    className="form-select"
-                                    aria-label="Default select example"
-                                    // onChange={(e) => {
-                                    //   if (e.target.value === "") {
-                                    //     fetchSortByName(e.target.value);
-                                    //   } else if (
-                                    //     e.target.value === "descending"
-                                    //   ) {
-                                    //     fetchSortByName(e.target.value);
-                                    //   } else {
-                                    //     fetchSortByDate(sortByDate);
-                                    //   }
-                                    // }}
+                                <div
+                                  className="modal-footer"
+                                  style={{ backgroundColor: "#03e9f4" }}
+                                >
+                                  <button
+                                    type="button"
+                                    className="btn btn-secondary"
+                                    data-bs-dismiss="modal"
                                   >
-                                    <option selected disabled>
-                                      Choose a logo
-                                    </option>
-                                    <option value="">Facebook</option>
-                                    <option value="">WhatsApp</option>
-                                    <option value="">Instagram</option>
-                                    <option value="">Twitter</option>
-                                    <option value="">E-mail</option>
-                                    <option value="">YouTube</option>
-                                  </select>
+                                    Close
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className="btn btn-primary"
+                                  >
+                                    Understood
+                                  </button>
                                 </div>
                               </div>
-                            </div>
-                            <div
-                              className="modal-footer"
-                              style={{ backgroundColor: "#03e9f4" }}
-                            >
-                              <button
-                                type="button"
-                                className="btn btn-secondary"
-                                data-bs-dismiss="modal"
-                              >
-                                Close
-                              </button>
-                              <button type="button" className="btn btn-primary">
-                                Understood
-                              </button>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
 
-                  {/* LINKS SECTION */}
-                  <div className={`row ${style.linkSection}`}>
-                    <div className="col-12">
-                      <div className="d-grid gap-2 ">
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Facebook
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          YouTube
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Instagram
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Twitter
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Tiktok
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          GitHub
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          E-mail
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          WhatsApp
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Shopee
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          LinkedIn
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          WhatsApp
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Shopee
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          LinkedIn
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          WhatsApp
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Shopee
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          LinkedIn
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          WhatsApp
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Shopee
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          LinkedIn
-                        </button>
-                        <style>
-                          {`
+                      {/* LINKS SECTION */}
+                      <div className={`row ${style.linkSection}`}>
+                        <div className="col-12">
+                          <div className="d-grid gap-2 ">
+                            {socmed?.map((item, key) => {
+                              return (
+                                <div key={key}>
+                                  <BtnLink socmed={item?.social_media} />
+                                </div>
+                              );
+                            })}
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              Facebook
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              YouTube
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              Instagram
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              Twitter
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              Tiktok
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              GitHub
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              E-mail
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              WhatsApp
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              Shopee
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              LinkedIn
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              WhatsApp
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              Shopee
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              LinkedIn
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              WhatsApp
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              Shopee
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              LinkedIn
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              WhatsApp
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              Shopee
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                            >
+                              LinkedIn
+                            </button>
+                            <style>
+                              {`
                             ::-webkit-scrollbar {
                               width: 0.3em;
                               height: 0.5em;
@@ -408,10 +491,12 @@ export default function Profile() {
                               background-color: rgba(0, 0, 0, 0.2);
                             }
                           `}
-                        </style>
+                            </style>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
