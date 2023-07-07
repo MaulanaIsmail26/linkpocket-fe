@@ -56,7 +56,7 @@ export default function SetupLinkPocket() {
                     {!addListLink ? (
                       <>
                         <Image
-                          src={require("/public/images/Icon-app-outline.png")}
+                          src={require("/public/images/Icon-app-outline.webp")}
                           className={`${style.iconApp}`}
                           // width={500}
                           height={75}
@@ -245,7 +245,7 @@ export default function SetupLinkPocket() {
                             >
                               <div className="">
                                 <Image
-                                  src={require("/public/images/Icon-app-outline.png")}
+                                  src={require("/public/images/Icon-app-outline.webp")}
                                   className={`${style.iconApp}`}
                                   // width={500}
                                   height={75}
@@ -404,7 +404,7 @@ export default function SetupLinkPocket() {
                                       // disabled={isLoading}
                                     >
                                       <Image
-                                        src={require("../../../public/images/icon-tiktok.png")}
+                                        src={require("../../../public/images/icon-tiktok.webp")}
                                         className={`${style.iconSocmed}`}
                                         // width={500}
                                         height={29}
@@ -578,7 +578,7 @@ export default function SetupLinkPocket() {
                                       // disabled={isLoading}
                                     >
                                       <Image
-                                        src={require("../../../public/images/icon-sp.png")}
+                                        src={require("../../../public/images/icon-sp.webp")}
                                         className={`${style.iconSocmed}`}
                                         style={{
                                           marginRight: "7px",
@@ -726,7 +726,7 @@ export default function SetupLinkPocket() {
                                               }}
                                             >
                                               <Image
-                                                src={require("../../../public/images/icon-tiktok.png")}
+                                                src={require("../../../public/images/icon-tiktok.webp")}
                                                 className={`${style.iconSocmed}`}
                                                 style={{
                                                   marginRight: "6px",
@@ -956,7 +956,7 @@ export default function SetupLinkPocket() {
                                               }}
                                             >
                                               <Image
-                                                src={require("../../../public/images/icon-sp.png")}
+                                                src={require("../../../public/images/icon-sp.webp")}
                                                 className={`${style.iconSocmed}`}
                                                 style={{ marginRight: "5px" }}
                                                 // width={500}

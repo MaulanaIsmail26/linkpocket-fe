@@ -117,7 +117,7 @@ export default function Register() {
                     <div className={`col`}>
                       <div className="d-flex justify-content-center">
                         <Image
-                          src={require("/public/images/Icon-app-nooutline.png")}
+                          src={require("/public/images/Icon-app-nooutline.webp")}
                           className={`${style.iconApp}`}
                           // width={500}
                           height={75}

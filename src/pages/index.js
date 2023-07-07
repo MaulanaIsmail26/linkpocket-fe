@@ -24,7 +24,7 @@ export default function Home() {
                   <div className={`row mb-2 ${style.iconApp}`}>
                     <div className="col d-flex justify-content-center">
                       <Image
-                        src={require("/public/images/Icon-app-nooutline.png")}
+                        src={require("/public/images/Icon-app-nooutline.webp")}
                         className={` ${style.icon}`}
                         // width={500}
                         height={80}
@@ -50,7 +50,7 @@ export default function Home() {
                   <div className={`row mb-1 ${style.bigIcon}`}>
                     <div className="col d-flex justify-content-center">
                       <Image
-                        src={require("/public/images/iconApp.png")}
+                        src={require("/public/images/iconApp.webp")}
                         className={` ${style.icon}`}
                         // width={500}
                         height={250}
