@@ -62,9 +62,8 @@ export default function SetupLinkPocket() {
                           height={75}
                           alt="Icon-Linkpocket"
                         />
-                        <h1 className={`${style.Title}`}>
-                          Hello Maulana Ismail
-                        </h1>
+                        <h1 className={`mb-0 ${style.Title}`}>Welcome,</h1>
+                        <h1 className={`${style.Title}`}>Maulana Ismail</h1>
                       </>
                     ) : null}
 
@@ -164,8 +163,8 @@ export default function SetupLinkPocket() {
                             </div>
                             <div className="col-7 position-relative">
                               <div className="position-absolute top-0 start-0">
-                                <label>Your LinkPocket description</label>
-                                <textarea
+                                {/* <label>Your LinkPocket description</label> */}
+                                {/* <textarea
                                   type="textarea"
                                   className={`${style.formAddDesc}`}
                                   maxlength="60"
@@ -175,6 +174,18 @@ export default function SetupLinkPocket() {
                                   //     handleSubmit;
                                   //   }
                                   // }}
+                                /> */}
+                                <TextField
+                                  className={`${style.formAddDesc}`}
+                                  id="standard-multiline-flexible"
+                                  label="Description"
+                                  multiline
+                                  maxRows={3}
+                                  variant="standard"
+                                  sx={{
+                                    width: "100%",
+                                  }}
+                                  inputProps={{ maxLength: 60 }}
                                 />
                                 <style>
                                   {`
@@ -224,6 +235,7 @@ export default function SetupLinkPocket() {
                     ) : null}
                     {/* END OF ADD DESCRIPTION */}
 
+                    {/* CARD ADD LIST LINK SOCMED */}
                     {addListLink ? (
                       <>
                         <div className={`container ${style.addListLinkPage}`}>
@@ -239,15 +251,16 @@ export default function SetupLinkPocket() {
                                   height={75}
                                   alt="Icon-Linkpocket"
                                 />
+                                <h1 className={`mb-0 ${style.Title}`}>
+                                  Welcome,
+                                </h1>
                                 <h1 className={`${style.Title}`}>
-                                  Hello Maulana Ismail
+                                  Maulana Ismail
                                 </h1>
                               </div>
 
                               {/* SUB TITLE ADD LIST LINK */}
-                              <p
-                                className={`${style.subTitle}`}
-                              >
+                              <p className={`${style.subTitle}`}>
                                 The final step, directly add your social media
                                 links and other pages.
                               </p>
@@ -295,6 +308,7 @@ export default function SetupLinkPocket() {
                                         alt="Icon-Linkpocket"
                                       /> */}
                                       <FacebookIcon
+                                        className={`${style.iconSocmed}`}
                                         style={{
                                           color: "#4267B2",
                                           fontSize: "30px",
@@ -331,6 +345,7 @@ export default function SetupLinkPocket() {
                                         alt="Icon-Linkpocket"
                                       /> */}
                                       <GitHubIcon
+                                        className={`${style.iconSocmed}`}
                                         style={{
                                           color: "#333",
                                           fontSize: "29px",
@@ -363,6 +378,7 @@ export default function SetupLinkPocket() {
                                         alt="Icon-Linkpocket"
                                       /> */}
                                       <YouTubeIcon
+                                        className={`${style.iconSocmed}`}
                                         style={{
                                           color: "#FF0000",
                                           fontSize: "31px",
@@ -393,6 +409,10 @@ export default function SetupLinkPocket() {
                                         // width={500}
                                         height={29}
                                         alt="Icon-Linkpocket"
+                                        style={{
+                                          marginRight: "5px",
+                                          letterSpacing: "0",
+                                        }}
                                       />
                                       TikTok
                                     </button>
@@ -421,6 +441,7 @@ export default function SetupLinkPocket() {
                                         alt="Icon-Linkpocket"
                                       /> */}
                                       <WhatsAppIcon
+                                        className={`${style.iconSocmed}`}
                                         style={{
                                           color: "#25D366",
                                           fontSize: "29px",
@@ -457,6 +478,7 @@ export default function SetupLinkPocket() {
                                         alt="Icon-Linkpocket"
                                       /> */}
                                       <TwitterIcon
+                                        className={`${style.iconSocmed}`}
                                         style={{
                                           color: "#1DA1F2",
                                           fontSize: "29px",
@@ -493,6 +515,7 @@ export default function SetupLinkPocket() {
                                         alt="Icon-Linkpocket"
                                       /> */}
                                       <LinkedInIcon
+                                        className={`${style.iconSocmed}`}
                                         style={{
                                           color: "#0072b1",
                                           fontSize: "29px",
@@ -529,6 +552,7 @@ export default function SetupLinkPocket() {
                                         alt="Icon-Linkpocket"
                                       /> */}
                                       <InstagramIcon
+                                        className={`${style.iconSocmed}`}
                                         style={{
                                           color: "#E1306C",
                                           fontSize: "29px",
@@ -605,6 +629,7 @@ export default function SetupLinkPocket() {
                                     <p className={`${style.titleCard}`}>
                                       Enter your link
                                     </p>
+                                    {/* FORM LINK SOCMED */}
                                     <div className={`${style.form}`}>
                                       <Box
                                         sx={{
@@ -1030,6 +1055,7 @@ export default function SetupLinkPocket() {
                         </div>
                       </>
                     ) : null}
+                    {/* END OF CARD ADD LIST LINK SOCMED */}
                   </div>
                 </div>
               </div>
