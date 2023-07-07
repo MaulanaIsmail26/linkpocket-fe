@@ -24,7 +24,7 @@ export default function Home() {
                     <div className={`col`}>
                       <div className="d-flex justify-content-between">
                         <Image
-                          src={require("/public/images/Icon-app-nooutline.png")}
+                          src={require("/public/images/Icon-app-nooutline.webp")}
                           className={` ${style.iconApp}`}
                           // width={500}
                           // height={65}

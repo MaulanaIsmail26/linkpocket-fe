@@ -56,7 +56,7 @@ export default function Profile() {
                     <div className="position-absolute top-50 start-50 translate-middle">
                       <div className="d-flex justify-content-center">
                         <Image
-                          src={require("/public/images/Icon-app-nooutline.png")}
+                          src={require("/public/images/Icon-app-nooutline.webp")}
                           className={` ${style.iconApp}`}
                           width={200}
                           // height={65}
