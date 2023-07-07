@@ -592,7 +592,7 @@ export default function SetupLinkPocket() {
                                     </button>
 
                                     {/* ANOTHER */}
-                                    <button
+                                    {/* <button
                                       className={`btn btn-outline-primary ${
                                         formAnother
                                           ? style.selected
@@ -611,7 +611,7 @@ export default function SetupLinkPocket() {
                                       // disabled={isLoading}
                                     >
                                       +
-                                    </button>
+                                    </button> */}
                                   </div>
                                 </div>
                                 {/* END OF BUTTON OPTION APP */}
@@ -978,7 +978,7 @@ export default function SetupLinkPocket() {
                                         ) : null}
 
                                         {/* ANOTHER */}
-                                        {formAnother ? (
+                                        {/* {formAnother ? (
                                           <>
                                             <Box
                                               sx={{
@@ -1007,7 +1007,7 @@ export default function SetupLinkPocket() {
                                               />
                                             </Box>
                                           </>
-                                        ) : null}
+                                        ) : null} */}
                                       </Box>
                                       <style>
                                         {`
