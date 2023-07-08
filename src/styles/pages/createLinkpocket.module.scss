@@ -1,0 +1,404 @@
+.main {
+  padding: 0;
+  margin: 0;
+
+  .setup {
+    background-image: url("../../../public/images/background-image.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    overflow: auto;
+
+    .setUpSide {
+      height: 100vh;
+      overflow: auto;
+      // background-color: rgba(255, 0, 0, 0.192);
+
+      .cardSetUp {
+        width: 500px;
+        height: 95%;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.28), rgba(255, 255, 255, 0));
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 32px;
+
+        // HEAD OF CARD
+        .headCard {
+          .iconApp {
+            filter: drop-shadow(4px 4px 7px rgba(0, 0, 0, 0.6));
+          }
+
+          .Title {
+            font-size: 25px;
+            font-weight: 500;
+            margin-top: 10px;
+            margin-bottom: -5px;
+            color: white;
+          }
+
+          .TitleName {
+            font-size: 40px;
+            font-weight: 500;
+            text-shadow: 4px 4px 7px rgba(0, 0, 0, 0.6);
+            color: #03e9f4;
+          }
+
+          @media screen and (max-width:600px) {
+            .TitleName {
+              font-size: 35px;
+            }
+          }
+        }
+
+        // FORM NAME
+        .formNamePart {
+          .instruction {
+            color: rgb(228, 228, 228);
+            text-align: center;
+          }
+
+          @media screen and (max-width:600px) {
+            .instruction {
+              font-size: 14px;
+            }
+          }
+
+          .form {
+            margin-top: 10px;
+          }
+
+          .btnNext {
+            color: #03e9f4;
+            font-size: 12px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            background-color: transparent;
+            border: 1px solid #03e9f4;
+            box-shadow: none;
+            border-radius: 8px;
+          }
+
+          .btnNext:hover {
+            background: #03e9f4;
+            color: #000000;
+          }
+        }
+
+        // FORM DESC
+        .formDescPart {
+          .instruction {
+            color: rgb(228, 228, 228);
+            text-align: center;
+          }
+
+          @media screen and (max-width:600px) {
+            .instruction {
+              font-size: 14px;
+            }
+          }
+
+          .form {
+            margin-top: 10px;
+          }
+
+          .btnNext {
+            color: #03e9f4;
+            font-size: 12px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            background-color: transparent;
+            border: 1px solid #03e9f4;
+            box-shadow: none;
+            border-radius: 8px;
+            margin-left: 15px;
+          }
+
+          .btnNext:hover {
+            background: #03e9f4;
+            color: #000000;
+          }
+        }
+
+        // FORM PHOTO
+        .formPhotoPart {
+          .instruction {
+            color: rgb(228, 228, 228);
+          }
+
+          @media screen and (max-width:600px) {
+            .instruction {
+              text-align: center;
+              font-size: 14px;
+            }
+          }
+
+          .formPhoto {
+            margin-top: 15px;
+            label {
+              width: 200px;
+              height: 200px;
+              cursor: pointer;
+
+              p {
+                margin: 0;
+              }
+
+              .rulesPhoto {
+                margin-top: -3px;
+                font-size: 14px;
+                color: rgb(219, 218, 218);
+              }
+            }
+          }
+
+          .btnNext {
+            color: #03e9f4;
+            font-size: 12px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            background-color: transparent;
+            border: 1px solid #03e9f4;
+            box-shadow: none;
+            border-radius: 8px;
+            margin-left: 15px;
+          }
+
+          .btnNext:hover {
+            background: #03e9f4;
+            color: #000000;
+          }
+        }
+      }
+
+      @media screen and (max-width:600px) {
+        .cardSetUp {
+          width: 100%;
+        }
+      }
+    }
+
+    // *LIST PAGE
+    // LEFT SIDE
+    .leftSide {
+      .setUpList {
+        height: 100vh;
+        overflow: auto;
+
+        .cardSetUp {
+          width: 90%;
+          height: 95%;
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.28), rgba(255, 255, 255, 0));
+          -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 32px;
+
+          .headCard {
+            .iconApp {
+              filter: drop-shadow(4px 4px 7px rgba(0, 0, 0, 0.6));
+              margin-top: 0;
+            }
+
+            .Title {
+              font-size: 25px;
+              font-weight: 500;
+              margin-top: 10px;
+              margin-bottom: -5px;
+              color: white;
+            }
+
+            .TitleName {
+              font-size: 40px;
+              font-weight: 500;
+              text-shadow: 4px 4px 7px rgba(0, 0, 0, 0.6);
+              color: #03e9f4;
+            }
+
+            @media screen and (max-width:600px) {
+              .TitleName {
+                font-size: 35px;
+              }
+            }
+          }
+
+          // FORM LIST
+          .formListPart {
+            .instruction {
+              color: rgb(228, 228, 228);
+              text-align: center;
+            }
+
+            @media screen and (max-width:600px) {
+              .instruction {
+                font-size: 14px;
+              }
+            }
+
+            .option {
+              margin-top: 10px;
+
+              .btnOption {
+                color: #03e9f4;
+                font-size: 13px;
+                text-decoration: none;
+                letter-spacing: 2px;
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.384), rgba(0, 0, 0, 0.226));
+                // background-color: transparent;
+                border: 2px solid #03e9f4;
+                box-shadow: none;
+                border-radius: 50px;
+                font-weight: 500;
+                margin-right: 12px;
+                margin-bottom: 12px;
+                width: 35%;
+                height: 7vh;
+              }
+
+              @media screen and (max-width:600px) {
+                .btnOption {
+                  width: 45%;
+                  letter-spacing: 0;
+                }
+              }
+
+              .selected {
+                color: black;
+                font-size: 13px;
+                text-decoration: none;
+                letter-spacing: 2px;
+                background-color: #03e9f4;
+                border: 2px solid #03e9f4;
+                box-shadow: none;
+                border-radius: 50px;
+                font-weight: 500;
+                margin-right: 12px;
+                margin-bottom: 12px;
+                width: 35%;
+                height: 7vh;
+              }
+
+              @media screen and (max-width:600px) {
+                .selected {
+                  width: 45%;
+                  letter-spacing: 0;
+                }
+              }
+
+              .btnOption:hover {
+                background-color: #03e9f4;
+                color: black;
+              }
+            }
+
+            .btnNext {
+              color: #03e9f4;
+              font-size: 12px;
+              text-decoration: none;
+              letter-spacing: 2px;
+              background-color: transparent;
+              border: 1px solid #03e9f4;
+              box-shadow: none;
+              border-radius: 8px;
+              margin-left: 15px;
+            }
+
+            .btnNext:hover {
+              background: #03e9f4;
+              color: #000000;
+            }
+
+            @media screen and (max-width:600px) {
+              .btnNext {
+                margin-top: 15px;
+              }
+            }
+          }
+        }
+
+        @media screen and (max-width:600px) {
+          .cardSetUp {
+            width: 100%;
+            height: max-content;
+          }
+        }
+      }
+
+      @media screen and (max-width:600px) {
+        .setUpList {
+          height: max-content;
+          padding-top: 20px;
+        }
+      }
+    }
+    
+    // RIGHT SIDE
+    .rightSide {
+      height: 100vh;
+
+      .setUpList {
+        height: 100vh;
+    
+        .cardSetUp {
+          width: 90%;
+          height: 95%;
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.28), rgba(255, 255, 255, 0));
+          -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 32px;
+    
+          // FORM NAME
+          .formNamePart {
+            margin-top: 20px;
+            .instruction {
+              color: rgb(228, 228, 228);
+              text-shadow: 4px 4px 7px rgba(0, 0, 0, 0.6);
+            }
+
+            .formLink {
+              height: 69vh;
+              overflow: auto;
+            }
+
+            @media screen and (max-width:600px) {
+              .formLink {
+                height: 74vh;
+                overflow: auto;
+              }
+            }
+
+            .divBtnNext {
+              .btnNext {
+                color: #03e9f4;
+                font-size: 12px;
+                text-decoration: none;
+                letter-spacing: 2px;
+                background-color: transparent;
+                border: 1px solid #03e9f4;
+                box-shadow: none;
+                border-radius: 8px;
+                margin-top: 20px;
+              }
+
+              .btnNext:hover {
+                background: #03e9f4;
+                color: #000000;
+              }
+            }
+          }
+        }
+    
+        @media screen and (max-width:600px) {
+          .cardSetUp {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
