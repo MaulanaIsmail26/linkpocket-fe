@@ -2,6 +2,9 @@ import React from "react";
 import Head from "next/head";
 import style from "@/styles/pages/createLinkpocket.module.scss";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import axios from "axios";
+// import localStorage from "local-storage";
 
 // MATERIAL UI
 import Box from "@mui/material/Box";
@@ -23,11 +26,16 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 
-export default function User_setup() {
+export default function UserSetup() {
+  const router = useRouter();
+  // const localStorage = require("local-storage");
+
+  // SAVE DATA
   const [addName, setAddName] = React.useState(true);
   const [addDesc, setAddDesc] = React.useState(false);
   const [addListLink, setAddListLink] = React.useState(false);
   const [addPhoto, setAddPhoto] = React.useState(false);
+  const [uploadImg, setUploadImg] = React.useState(null);
 
   // FORM LIST LINK SOCIAL MEDIA
   const [choose, setChoose] = React.useState(false);
@@ -42,8 +50,77 @@ export default function User_setup() {
   const [formShopee, setFormShopee] = React.useState(false);
   const [formAnother, setFormAnother] = React.useState(false);
 
-  // SAVE DATA
-  const [uploadImg, setUploadImg] = React.useState(null);
+  // STATE FOR ADD LINKPOCKET
+  const [title, setTitle] = React.useState("");
+  const [desc, setDesc] = React.useState("");
+  const [background, setBackground] = React.useState("");
+  const [picture, setPicture] = React.useState("");
+  const [socmed, setSocmed] = React.useState({
+    facebook: "",
+    instagram: "",
+    tiktok: "",
+    whatsapp: "",
+    youtube: "",
+    twitter: "",
+    github: "",
+    linkedin: "",
+    shopee: "",
+  });
+  const [link, setLink] = React.useState([
+    {
+      link: "",
+      title: "",
+    },
+  ]);
+
+  // // BUTTON CONDITION
+  // const [checkActive, setCheckActive] = React.useState(false);
+
+  // // GET PROFILE TO LOCAL STORAGE
+  // const checkProfile = localStorage.get("profile")
+  //   ? localStorage.get("profile")
+  //   : null;
+  // const [profile, setProfile] = React.useState(checkProfile);
+  // console.log(profile?.fullname);
+  // console.log(title)
+  // console.log(checkActive)
+
+  // const test = () => {
+  //   if (checkActive == true) {
+  //     setTitle(profile?.fullname);
+  //   } else {
+  //     setTitle("")
+  //   }
+  // }
+
+  // ADD LINKPOCKET
+  const sendData = () => {
+    let bodyFormData = new FormData();
+    // setLoading(true);
+
+    bodyFormData.append("title", title);
+    bodyFormData.append("desc", desc);
+    bodyFormData.append("background", background);
+    bodyFormData.append("social_media", JSON.stringify(socmed));
+    bodyFormData.append("link", JSON.stringify(link));
+    bodyFormData.append("photo_profile", picture);
+
+    axios
+      .post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/space`, bodyFormData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage?.getItem("token")}`,
+        },
+      })
+      .then(() => {
+        // router.push("/profile/test");
+        // setUploadSuccess(true);
+        // setUploadError(false);
+      })
+      .finally(() => {
+        // setLoading(false);
+      });
+  };
 
   return (
     <div>
@@ -138,6 +215,20 @@ export default function User_setup() {
                                     },
                                   },
                                 }}
+                                defaultValue={title}
+                                // defaultValue={() => {
+                                //   if (!checkActive) {
+                                //     title ? title : null;
+                                //   }
+
+                                //   if (checkActive) {
+                                //     profile?.fullname;
+                                //   }
+                                // }}
+                                // defaultValue={profile?.fullname ? profile?.fullname : null}
+                                onChange={(e) => {
+                                  setTitle(e.target.value);
+                                }}
                               />
 
                               {/* CHECKBOX */}
@@ -161,12 +252,22 @@ export default function User_setup() {
                                     fontWeight: "normal",
                                   },
                                 }}
+                                // onClick={() => {
+                                //   // setTitle(profile?.fullname);
+                                //   if (!checkActive) {
+                                //     setCheckActive(true);
+                                //   } else {
+                                //     setCheckActive(false);
+                                //   }
+                                //   test()
+                                // }}
                               />
 
                               {/* BUTTON NEXT */}
                               <div className="d-flex justify-content-end">
                                 <button
                                   className={`btn ${style.btnNext}`}
+                                  disabled={title.length == 0}
                                   onClick={() => {
                                     setAddName(false);
                                     setAddDesc(true);
@@ -230,6 +331,10 @@ export default function User_setup() {
                                     },
                                   },
                                 }}
+                                defaultValue={desc ? desc : null}
+                                onChange={(e) => {
+                                  setDesc(e.target.value);
+                                }}
                               />
                               <style>
                                 {`
@@ -258,6 +363,7 @@ export default function User_setup() {
                                 </button>
                                 <button
                                   className={`btn ${style.btnNext}`}
+                                  disabled={desc.length == 0}
                                   onClick={() => {
                                     setAddName(false);
                                     setAddDesc(false);
@@ -310,7 +416,10 @@ export default function User_setup() {
                                         <div>
                                           <div className="d-flex justify-content-center">
                                             <DriveFolderUploadIcon
-                                              style={{ color: "#03e9f4", fontSize: "50px" }}
+                                              style={{
+                                                color: "#03e9f4",
+                                                fontSize: "50px",
+                                              }}
                                             />
                                           </div>
                                           <p style={{ color: "#03e9f4" }}>
@@ -335,7 +444,7 @@ export default function User_setup() {
                                     setUploadImg(
                                       URL.createObjectURL(e.target.files[0])
                                     );
-                                    // setPhoto(e.target.files[0]);
+                                    setPicture(e.target.files[0]);
                                   }}
                                 />
                               </div>
@@ -355,11 +464,14 @@ export default function User_setup() {
                                 </button>
                                 <button
                                   className={`btn ${style.btnNext}`}
+                                  disabled={picture.length == 0}
                                   onClick={() => {
                                     setAddName(false);
                                     setAddDesc(false);
                                     setAddListLink(false);
                                     setAddPhoto(true);
+
+                                    sendData();
                                   }}
                                   // disabled={isLoading}
                                 >
@@ -874,6 +986,20 @@ export default function User_setup() {
                                             },
                                           },
                                         }}
+                                        defaultValue={socmed.facebook}
+                                        onChange={(e) => {
+                                          setSocmed({
+                                            facebook: e.target.value,
+                                            instagram: socmed.instagram,
+                                            tiktok: socmed.tiktok,
+                                            whatsapp: socmed.whatsapp,
+                                            youtube: socmed.youtube,
+                                            twitter: socmed.twitter,
+                                            github: socmed.github,
+                                            linkedin: socmed.linkedin,
+                                            shopee: socmed.shopee,
+                                          });
+                                        }}
                                       />
                                     </Box>
                                   </>
@@ -928,6 +1054,20 @@ export default function User_setup() {
                                               borderColor: "#03e9f4",
                                             },
                                           },
+                                        }}
+                                        defaultValue={socmed.instagram}
+                                        onChange={(e) => {
+                                          setSocmed({
+                                            facebook: socmed.facebook,
+                                            instagram: e.target.value,
+                                            tiktok: socmed.tiktok,
+                                            whatsapp: socmed.whatsapp,
+                                            youtube: socmed.youtube,
+                                            twitter: socmed.twitter,
+                                            github: socmed.github,
+                                            linkedin: socmed.linkedin,
+                                            shopee: socmed.shopee,
+                                          });
                                         }}
                                       />
                                     </Box>
@@ -988,6 +1128,20 @@ export default function User_setup() {
                                             },
                                           },
                                         }}
+                                        defaultValue={socmed.tiktok}
+                                        onChange={(e) => {
+                                          setSocmed({
+                                            facebook: socmed.facebook,
+                                            instagram: socmed.instagram,
+                                            tiktok: e.target.value,
+                                            whatsapp: socmed.whatsapp,
+                                            youtube: socmed.youtube,
+                                            twitter: socmed.twitter,
+                                            github: socmed.github,
+                                            linkedin: socmed.linkedin,
+                                            shopee: socmed.shopee,
+                                          });
+                                        }}
                                       />
                                     </Box>
                                   </>
@@ -1042,6 +1196,20 @@ export default function User_setup() {
                                               borderColor: "#03e9f4",
                                             },
                                           },
+                                        }}
+                                        defaultValue={socmed.whatsapp}
+                                        onChange={(e) => {
+                                          setSocmed({
+                                            facebook: socmed.facebook,
+                                            instagram: socmed.instagram,
+                                            tiktok: socmed.tiktok,
+                                            whatsapp: e.target.value,
+                                            youtube: socmed.youtube,
+                                            twitter: socmed.twitter,
+                                            github: socmed.github,
+                                            linkedin: socmed.linkedin,
+                                            shopee: socmed.shopee,
+                                          });
                                         }}
                                       />
                                     </Box>
@@ -1098,6 +1266,20 @@ export default function User_setup() {
                                             },
                                           },
                                         }}
+                                        defaultValue={socmed.youtube}
+                                        onChange={(e) => {
+                                          setSocmed({
+                                            facebook: socmed.facebook,
+                                            instagram: socmed.instagram,
+                                            tiktok: socmed.tiktok,
+                                            whatsapp: socmed.whatsapp,
+                                            youtube: e.target.value,
+                                            twitter: socmed.twitter,
+                                            github: socmed.github,
+                                            linkedin: socmed.linkedin,
+                                            shopee: socmed.shopee,
+                                          });
+                                        }}
                                       />
                                     </Box>
                                   </>
@@ -1152,6 +1334,20 @@ export default function User_setup() {
                                               borderColor: "#03e9f4",
                                             },
                                           },
+                                        }}
+                                        defaultValue={socmed.twitter}
+                                        onChange={(e) => {
+                                          setSocmed({
+                                            facebook: socmed.facebook,
+                                            instagram: socmed.instagram,
+                                            tiktok: socmed.tiktok,
+                                            whatsapp: socmed.whatsapp,
+                                            youtube: socmed.youtube,
+                                            twitter: e.target.value,
+                                            github: socmed.github,
+                                            linkedin: socmed.linkedin,
+                                            shopee: socmed.shopee,
+                                          });
                                         }}
                                       />
                                     </Box>
@@ -1208,6 +1404,20 @@ export default function User_setup() {
                                             },
                                           },
                                         }}
+                                        defaultValue={socmed.github}
+                                        onChange={(e) => {
+                                          setSocmed({
+                                            facebook: socmed.facebook,
+                                            instagram: socmed.instagram,
+                                            tiktok: socmed.tiktok,
+                                            whatsapp: socmed.whatsapp,
+                                            youtube: socmed.youtube,
+                                            twitter: socmed.twitter,
+                                            github: e.target.value,
+                                            linkedin: socmed.linkedin,
+                                            shopee: socmed.shopee,
+                                          });
+                                        }}
                                       />
                                     </Box>
                                   </>
@@ -1262,6 +1472,20 @@ export default function User_setup() {
                                               borderColor: "#03e9f4",
                                             },
                                           },
+                                        }}
+                                        defaultValue={socmed.linkedin}
+                                        onChange={(e) => {
+                                          setSocmed({
+                                            facebook: socmed.facebook,
+                                            instagram: socmed.instagram,
+                                            tiktok: socmed.tiktok,
+                                            whatsapp: socmed.whatsapp,
+                                            youtube: socmed.youtube,
+                                            twitter: socmed.twitter,
+                                            github: socmed.github,
+                                            linkedin: e.target.value,
+                                            shopee: socmed.shopee,
+                                          });
                                         }}
                                       />
                                     </Box>
@@ -1318,6 +1542,20 @@ export default function User_setup() {
                                               borderColor: "#03e9f4",
                                             },
                                           },
+                                        }}
+                                        defaultValue={socmed.shopee}
+                                        onChange={(e) => {
+                                          setSocmed({
+                                            facebook: socmed.facebook,
+                                            instagram: socmed.instagram,
+                                            tiktok: socmed.tiktok,
+                                            whatsapp: socmed.whatsapp,
+                                            youtube: socmed.youtube,
+                                            twitter: socmed.twitter,
+                                            github: socmed.github,
+                                            linkedin: socmed.linkedin,
+                                            shopee: e.target.value,
+                                          });
                                         }}
                                       />
                                     </Box>
