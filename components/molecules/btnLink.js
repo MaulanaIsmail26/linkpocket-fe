@@ -8,6 +8,17 @@ export default function btnLink(props) {
       <button className={`btn ${style.linkStick}`} type="button">
         {socmed}
       </button>
+      {/* {socmed.map((_item) => {
+        return (
+          <button
+            className={`btn ${style.linkStick}`}
+            type="button"
+            key={_item}
+          >
+            {_item}
+          </button>
+        );
+      })} */}
     </div>
   );
 }
