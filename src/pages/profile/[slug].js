@@ -4,6 +4,7 @@ import style from "@/styles/pages/profile.module.scss";
 import Navbar from "components/organisms/navbar";
 import React from "react";
 import axios from "axios";
+import Link from "next/link";
 import BtnLink from "components/molecules/btnLink";
 
 export default function Profile() {
@@ -23,8 +24,9 @@ export default function Profile() {
         },
       })
       .then(({ data }) => {
-        console.log(data?.data[0]?.title);
-        setSocmed(data?.data);
+        // console.log(data?.data[0]?.social_media);
+        const test = JSON.parse(data?.data[0]?.social_media);
+        setSocmed(test);
         setTitle(data?.data[0]?.title);
         setPhoto(data?.data[0]?.photo_profile);
         setDesc(data?.data[0]?.desc);
@@ -34,6 +36,11 @@ export default function Profile() {
         setIsLoading(false);
       });
   }, []);
+
+  // const test = JSON.parse(socmed);
+  // console.log(socmed);
+  // console.log(JSON.stringify(socmed));
+  console.log(socmed.facebook);
 
   return (
     <>
@@ -360,126 +367,96 @@ export default function Profile() {
                       <div className={`row ${style.linkSection}`}>
                         <div className="col-12">
                           <div className="d-grid gap-2 ">
-                            {socmed?.map((item, key) => {
+                            {/* {socmed?.map((item, key) => {
                               return (
                                 <div key={key}>
                                   <BtnLink socmed={item?.social_media} />
                                 </div>
                               );
-                            })}
+                            })} */}
                             <button
                               className={`btn ${style.linkStick}`}
                               type="button"
+                              onClick={() =>
+                                window.open(`${socmed.facebook}`, "_blank")
+                              }
                             >
                               Facebook
                             </button>
+                            {socmed.instagram ? (
+                              <button
+                                className={`btn ${style.linkStick}`}
+                                type="button"
+                                onClick={() =>
+                                  window.open(`${socmed.instagram}`, "_blank")
+                                }
+                              >
+                                Instagram
+                              </button>
+                            ) : null}
+
                             <button
                               className={`btn ${style.linkStick}`}
                               type="button"
-                            >
-                              YouTube
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              Instagram
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              Twitter
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
+                              onClick={() =>
+                                window.open(`${socmed.tiktok}`, "_blank")
+                              }
                             >
                               Tiktok
                             </button>
                             <button
                               className={`btn ${style.linkStick}`}
                               type="button"
+                              onClick={() =>
+                                window.open(`${socmed.whatsapp}`, "_blank")
+                              }
+                            >
+                              WhatsApp
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                              onClick={() =>
+                                window.open(`${socmed.youtube}`, "_blank")
+                              }
+                            >
+                              YouTube
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                              onClick={() =>
+                                window.open(`${socmed.twitter}`, "_blank")
+                              }
+                            >
+                              Twitter
+                            </button>
+                            <button
+                              className={`btn ${style.linkStick}`}
+                              type="button"
+                              onClick={() =>
+                                window.open(`${socmed.github}`, "_blank")
+                              }
                             >
                               GitHub
                             </button>
                             <button
                               className={`btn ${style.linkStick}`}
                               type="button"
-                            >
-                              E-mail
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              WhatsApp
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              Shopee
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
+                              onClick={() =>
+                                window.open(`${socmed.linkedin}`, "_blank")
+                              }
                             >
                               LinkedIn
                             </button>
                             <button
                               className={`btn ${style.linkStick}`}
                               type="button"
-                            >
-                              WhatsApp
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
+                              onClick={() =>
+                                window.open(`${socmed.shopee}`, "_blank")
+                              }
                             >
                               Shopee
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              LinkedIn
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              WhatsApp
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              Shopee
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              LinkedIn
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              WhatsApp
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              Shopee
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                            >
-                              LinkedIn
                             </button>
                             <style>
                               {`
