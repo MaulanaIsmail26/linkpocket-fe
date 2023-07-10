@@ -7,6 +7,16 @@ import axios from "axios";
 import Link from "next/link";
 import BtnLink from "components/molecules/btnLink";
 
+// ICON
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+
 export default function Profile() {
   // const [socmed, setSocmed] = React.useState("");
   const [socmed, setSocmed] = React.useState([]);
@@ -383,6 +393,14 @@ export default function Profile() {
                                   window.open(`${socmed.facebook}`, "_blank")
                                 }
                               >
+                                <FacebookIcon
+                                  className={`${style.iconSocmed}`}
+                                  style={{
+                                    color: "#4267B2",
+                                    fontSize: "30px",
+                                    marginRight: "5px",
+                                  }}
+                                />
                                 Facebook
                               </button>
                             ) : null}
@@ -396,6 +414,14 @@ export default function Profile() {
                                   window.open(`${socmed.instagram}`, "_blank")
                                 }
                               >
+                                <InstagramIcon
+                                  className={`${style.iconSocmed}`}
+                                  style={{
+                                    color: "#E1306C",
+                                    fontSize: "30px",
+                                    marginRight: "5px",
+                                  }}
+                                />
                                 Instagram
                               </button>
                             ) : null}
@@ -409,6 +435,16 @@ export default function Profile() {
                                   window.open(`${socmed.tiktok}`, "_blank")
                                 }
                               >
+                                <Image
+                                  src={require("../../../public/images/icon-tiktok.webp")}
+                                  className={`${style.iconSocmed}`}
+                                  // width={500}
+                                  height={28}
+                                  alt="Icon-Linkpocket"
+                                  style={{
+                                    marginRight: "6px",
+                                  }}
+                                />
                                 Tiktok
                               </button>
                             ) : null}
@@ -422,6 +458,14 @@ export default function Profile() {
                                   window.open(`${socmed.whatsapp}`, "_blank")
                                 }
                               >
+                                <WhatsAppIcon
+                                  className={`${style.iconSocmed}`}
+                                  style={{
+                                    color: "#25D366",
+                                    fontSize: "30px",
+                                    marginRight: "5px",
+                                  }}
+                                />
                                 WhatsApp
                               </button>
                             ) : null}
@@ -435,6 +479,14 @@ export default function Profile() {
                                   window.open(`${socmed.youtube}`, "_blank")
                                 }
                               >
+                                <YouTubeIcon
+                                  className={`${style.iconSocmed}`}
+                                  style={{
+                                    color: "#FF0000",
+                                    fontSize: "31px",
+                                    marginRight: "5px",
+                                  }}
+                                />
                                 YouTube
                               </button>
                             ) : null}
@@ -448,6 +500,14 @@ export default function Profile() {
                                   window.open(`${socmed.twitter}`, "_blank")
                                 }
                               >
+                                <TwitterIcon
+                                  className={`${style.iconSocmed}`}
+                                  style={{
+                                    color: "#1DA1F2",
+                                    fontSize: "30px",
+                                    marginRight: "5px",
+                                  }}
+                                />
                                 Twitter
                               </button>
                             ) : null}
@@ -461,6 +521,14 @@ export default function Profile() {
                                   window.open(`${socmed.github}`, "_blank")
                                 }
                               >
+                                <GitHubIcon
+                                  className={`${style.iconSocmed}`}
+                                  style={{
+                                    color: "#333",
+                                    fontSize: "30px",
+                                    marginRight: "5px",
+                                  }}
+                                />
                                 GitHub
                               </button>
                             ) : null}
@@ -474,6 +542,14 @@ export default function Profile() {
                                   window.open(`${socmed.linkedin}`, "_blank")
                                 }
                               >
+                                <LinkedInIcon
+                                  className={`${style.iconSocmed}`}
+                                  style={{
+                                    color: "#0072b1",
+                                    fontSize: "30px",
+                                    marginRight: "5px",
+                                  }}
+                                />
                                 LinkedIn
                               </button>
                             ) : null}
@@ -487,6 +563,16 @@ export default function Profile() {
                                   window.open(`${socmed.shopee}`, "_blank")
                                 }
                               >
+                                <Image
+                                  src={require("../../../public/images/icon-sp.webp")}
+                                  className={`${style.iconSocmed}`}
+                                  style={{
+                                    marginRight: "5px",
+                                  }}
+                                  // width={500}
+                                  height={28}
+                                  alt="Icon-Linkpocket"
+                                />
                                 Shopee
                               </button>
                             ) : null}
