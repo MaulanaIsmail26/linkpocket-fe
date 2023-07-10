@@ -1,8 +1,55 @@
 import Head from "next/head";
 import Image from "next/image";
 import style from "@/styles/pages/pocketSpace.module.scss";
+import React from "react";
+import axios from "axios";
+import Navbar from "components/organisms/navbar";
+import Link from "next/link";
+
+// ICON
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 
 export default function Home() {
+  const [socmed, setSocmed] = React.useState([]);
+  const [title, setTitle] = React.useState([]);
+  const [photo, setPhoto] = React.useState([]);
+  const [desc, setDesc] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [dataNull, setDataNull] = React.useState(false);
+
+  React.useEffect(() => {
+    const id = location.pathname.split("/")[2];
+
+    axios
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/space/${id}`, {
+        headers: {
+          // "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(({ data }) => {
+        console.log(data?.data);
+        const test = JSON.parse(data?.data?.social_media);
+        setSocmed(test);
+        setTitle(data?.data?.title);
+        setPhoto(data?.data?.photo_profile);
+        setDesc(data?.data?.desc);
+
+        setDataNull(false);
+      })
+      .catch(() => setDataNull(true))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
   return (
     <>
       <Head>
@@ -20,193 +67,319 @@ export default function Home() {
                 <div
                   className={`position-absolute top-50 start-50 translate-middle px-sm-4 px-3 ${style.cardLinkPocket}`}
                 >
-                  <div className={`row ${style.titleCard}`}>
-                    <div className={`col`}>
-                      <div className="d-flex justify-content-between">
+                  {isLoading ? (
+                    <div className="position-absolute top-50 start-50 translate-middle">
+                      <div className="d-flex justify-content-center">
                         <Image
                           src={require("/public/images/Icon-app-nooutline.webp")}
                           className={` ${style.iconApp}`}
-                          // width={500}
+                          width={200}
                           // height={65}
                           alt="Icon-Linkpocket"
                         />
-                        <div className={` ${style.btnLoginRegister}`}>
-                          <button
-                            type="button"
-                            className={`btn btn-outline-primary ${style.btnLogin}`}
-                          >
-                            Login
-                          </button>
-                          <button
-                            type="button"
-                            className={`btn btn-primary ${style.btnRegister}`}
-                          >
-                            Register
-                          </button>
+                      </div>
+                      <div className="d-flex justify-content-center">
+                        <div
+                          class="spinner-border text-info "
+                          style={{
+                            width: "5rem",
+                            height: "5rem",
+                            margin: "auto",
+                          }}
+                          role="status"
+                        >
+                          <span class="visually-hidden ">Loading...</span>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  {/* PROFILE SECTION */}
-                  <div className={`row ${style.profileCard}`}>
-                    <div className="col-sm-4 col-5">
-                      <Image
-                        src={require("/public/images/IMG_20230116_093528.jpg")}
-                        className={` ${style.photoProfile}`}
-                        // width={500}
-                        // height={65}
-                        alt="Icon-Linkpocket"
-                      />
-                    </div>
-                    <div className="col-sm-8 col-7">
-                      <h3 className={`${style.username}`}>Maulana Ismail</h3>
-                      <p className={`${style.desc}`}>
-                        Terjemahkan teks & berkas dokumen secara instan.
-                        Terjemahan.
-                      </p>
-                      <div className="d-grid gap-2">
-                        <button
-                          type="button"
-                          className={`btn btn-primary ${style.btnShare}`}
-                        >
-                          Create your LinkPocket
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  ) : (
+                    <>
+                      {dataNull ? null : (
+                        <div className={`row ${style.titleCard}`}>
+                          <Navbar />
+                        </div>
+                      )}
+                      {/* PROFILE SECTION */}
+                      {dataNull ? (
+                        <div className="position-absolute top-50 start-50 translate-middle">
+                          <div className="d-flex justify-content-center">
+                            <Image
+                              src={require("/public/images/Icon-app-nooutline.webp")}
+                              className={` ${style.iconApp}`}
+                              width={200}
+                              // height={65}
+                              alt="Icon-Linkpocket"
+                            />
+                          </div>
+                          <div className="d-flex justify-content-center">
+                            <h5
+                              className="text-center"
+                              style={{ color: "white" }}
+                            >
+                              The user LinkPocket card link is missing.
+                            </h5>
+                          </div>
+                        </div>
+                      ) : (
+                        <>
+                          <div className={`row ${style.profileCard}`}>
+                            <div className="col-sm-4 col-5">
+                              <Image
+                                src={
+                                  photo ||
+                                  `https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1200px-User-avatar.svg.png`
+                                }
+                                className={` ${style.photoProfile}`}
+                                width={120}
+                                height={120}
+                                alt="Icon-Linkpocket"
+                              />
+                            </div>
+                            <div className="col-sm-8 col-7">
+                              <h3 className={`${style.username}`}>
+                                {title || "TITLE"}
+                              </h3>
+                              <p className={`${style.desc}`}>
+                                {desc || "DESCRIPTION"}
+                              </p>
+                              <div className="d-grid gap-2">
+                                <Link
+                                  type="button"
+                                  href={"/auth/register"}
+                                  className={`btn btn-primary ${style.btnShare}`}
+                                >
+                                  Create your LinkPocket
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
 
-                  {/* LINKS SECTION */}
-                  <div className={`row ${style.linkSection}`}>
-                    <div className="col-12">
-                      <div className="d-grid gap-2 ">
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Facebook
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          YouTube
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Instagram
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Twitter
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Tiktok
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          GitHub
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          E-mail
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          WhatsApp
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Shopee
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          LinkedIn
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          WhatsApp
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Shopee
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          LinkedIn
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          WhatsApp
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Shopee
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          LinkedIn
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          WhatsApp
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          Shopee
-                        </button>
-                        <button
-                          className={`btn ${style.linkStick}`}
-                          type="button"
-                        >
-                          LinkedIn
-                        </button>
-                        <style>
-                          {`
+                          {/* LINKS SECTION */}
+                          <div className={`row ${style.linkSection}`}>
+                            <div className="col-12">
+                              <div className="d-grid gap-2 ">
+                                {/* FACEBOOK */}
+                                {socmed.facebook ? (
+                                  <button
+                                    className={`btn ${style.linkStick}`}
+                                    type="button"
+                                    onClick={() =>
+                                      window.open(
+                                        `${socmed.facebook}`,
+                                        "_blank"
+                                      )
+                                    }
+                                  >
+                                    <FacebookIcon
+                                      className={`${style.iconSocmed}`}
+                                      style={{
+                                        color: "#4267B2",
+                                        fontSize: "30px",
+                                        marginRight: "5px",
+                                      }}
+                                    />
+                                    Facebook
+                                  </button>
+                                ) : null}
+
+                                {/* INSTAGRAM */}
+                                {socmed.instagram ? (
+                                  <button
+                                    className={`btn ${style.linkStick}`}
+                                    type="button"
+                                    onClick={() =>
+                                      window.open(
+                                        `${socmed.instagram}`,
+                                        "_blank"
+                                      )
+                                    }
+                                  >
+                                    <InstagramIcon
+                                      className={`${style.iconSocmed}`}
+                                      style={{
+                                        color: "#E1306C",
+                                        fontSize: "30px",
+                                        marginRight: "5px",
+                                      }}
+                                    />
+                                    Instagram
+                                  </button>
+                                ) : null}
+
+                                {/* TIKTOK */}
+                                {socmed.tiktok ? (
+                                  <button
+                                    className={`btn ${style.linkStick}`}
+                                    type="button"
+                                    onClick={() =>
+                                      window.open(`${socmed.tiktok}`, "_blank")
+                                    }
+                                  >
+                                    <Image
+                                      src={require("../../../public/images/icon-tiktok.webp")}
+                                      className={`${style.iconSocmed}`}
+                                      // width={500}
+                                      height={28}
+                                      alt="Icon-Linkpocket"
+                                      style={{
+                                        marginRight: "6px",
+                                      }}
+                                    />
+                                    Tiktok
+                                  </button>
+                                ) : null}
+
+                                {/* WHATSAPP */}
+                                {socmed.whatsapp ? (
+                                  <button
+                                    className={`btn ${style.linkStick}`}
+                                    type="button"
+                                    onClick={() =>
+                                      window.open(
+                                        `${socmed.whatsapp}`,
+                                        "_blank"
+                                      )
+                                    }
+                                  >
+                                    <WhatsAppIcon
+                                      className={`${style.iconSocmed}`}
+                                      style={{
+                                        color: "#25D366",
+                                        fontSize: "30px",
+                                        marginRight: "5px",
+                                      }}
+                                    />
+                                    WhatsApp
+                                  </button>
+                                ) : null}
+
+                                {/* YOUTUBE */}
+                                {socmed.youtube ? (
+                                  <button
+                                    className={`btn ${style.linkStick}`}
+                                    type="button"
+                                    onClick={() =>
+                                      window.open(`${socmed.youtube}`, "_blank")
+                                    }
+                                  >
+                                    <YouTubeIcon
+                                      className={`${style.iconSocmed}`}
+                                      style={{
+                                        color: "#FF0000",
+                                        fontSize: "31px",
+                                        marginRight: "5px",
+                                      }}
+                                    />
+                                    YouTube
+                                  </button>
+                                ) : null}
+
+                                {/* TWITTER */}
+                                {socmed.twitter ? (
+                                  <button
+                                    className={`btn ${style.linkStick}`}
+                                    type="button"
+                                    onClick={() =>
+                                      window.open(`${socmed.twitter}`, "_blank")
+                                    }
+                                  >
+                                    <TwitterIcon
+                                      className={`${style.iconSocmed}`}
+                                      style={{
+                                        color: "#1DA1F2",
+                                        fontSize: "30px",
+                                        marginRight: "5px",
+                                      }}
+                                    />
+                                    Twitter
+                                  </button>
+                                ) : null}
+
+                                {/* GITHUB */}
+                                {socmed.github ? (
+                                  <button
+                                    className={`btn ${style.linkStick}`}
+                                    type="button"
+                                    onClick={() =>
+                                      window.open(`${socmed.github}`, "_blank")
+                                    }
+                                  >
+                                    <GitHubIcon
+                                      className={`${style.iconSocmed}`}
+                                      style={{
+                                        color: "#333",
+                                        fontSize: "30px",
+                                        marginRight: "5px",
+                                      }}
+                                    />
+                                    GitHub
+                                  </button>
+                                ) : null}
+
+                                {/* LINKEDIN */}
+                                {socmed.linkedin ? (
+                                  <button
+                                    className={`btn ${style.linkStick}`}
+                                    type="button"
+                                    onClick={() =>
+                                      window.open(
+                                        `${socmed.linkedin}`,
+                                        "_blank"
+                                      )
+                                    }
+                                  >
+                                    <LinkedInIcon
+                                      className={`${style.iconSocmed}`}
+                                      style={{
+                                        color: "#0072b1",
+                                        fontSize: "30px",
+                                        marginRight: "5px",
+                                      }}
+                                    />
+                                    LinkedIn
+                                  </button>
+                                ) : null}
+
+                                {/* SHOPEE */}
+                                {socmed.shopee ? (
+                                  <button
+                                    className={`btn ${style.linkStick}`}
+                                    type="button"
+                                    onClick={() =>
+                                      window.open(`${socmed.shopee}`, "_blank")
+                                    }
+                                  >
+                                    <Image
+                                      src={require("../../../public/images/icon-sp.webp")}
+                                      className={`${style.iconSocmed}`}
+                                      style={{
+                                        marginRight: "5px",
+                                      }}
+                                      // width={500}
+                                      height={28}
+                                      alt="Icon-Linkpocket"
+                                    />
+                                    Shopee
+                                  </button>
+                                ) : null}
+                                <style>
+                                  {`
                             ::-webkit-scrollbar {
-                              width: 0.3em;
+                              width: 0em;
                               height: 0.5em;
                             }
                             ::-webkit-scrollbar-thumb {
                               background-color: rgba(0, 0, 0, 0.2);
                             }
                           `}
-                        </style>
-                      </div>
-                    </div>
-                  </div>
+                                </style>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             </div>
