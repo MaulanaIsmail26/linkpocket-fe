@@ -374,15 +374,20 @@ export default function Profile() {
                                 </div>
                               );
                             })} */}
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                              onClick={() =>
-                                window.open(`${socmed.facebook}`, "_blank")
-                              }
-                            >
-                              Facebook
-                            </button>
+                            {/* FACEBOOK */}
+                            {socmed.facebook ? (
+                              <button
+                                className={`btn ${style.linkStick}`}
+                                type="button"
+                                onClick={() =>
+                                  window.open(`${socmed.facebook}`, "_blank")
+                                }
+                              >
+                                Facebook
+                              </button>
+                            ) : null}
+
+                            {/* INSTAGRAM */}
                             {socmed.instagram ? (
                               <button
                                 className={`btn ${style.linkStick}`}
@@ -395,73 +400,101 @@ export default function Profile() {
                               </button>
                             ) : null}
 
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                              onClick={() =>
-                                window.open(`${socmed.tiktok}`, "_blank")
-                              }
-                            >
-                              Tiktok
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                              onClick={() =>
-                                window.open(`${socmed.whatsapp}`, "_blank")
-                              }
-                            >
-                              WhatsApp
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                              onClick={() =>
-                                window.open(`${socmed.youtube}`, "_blank")
-                              }
-                            >
-                              YouTube
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                              onClick={() =>
-                                window.open(`${socmed.twitter}`, "_blank")
-                              }
-                            >
-                              Twitter
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                              onClick={() =>
-                                window.open(`${socmed.github}`, "_blank")
-                              }
-                            >
-                              GitHub
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                              onClick={() =>
-                                window.open(`${socmed.linkedin}`, "_blank")
-                              }
-                            >
-                              LinkedIn
-                            </button>
-                            <button
-                              className={`btn ${style.linkStick}`}
-                              type="button"
-                              onClick={() =>
-                                window.open(`${socmed.shopee}`, "_blank")
-                              }
-                            >
-                              Shopee
-                            </button>
+                            {/* TIKTOK */}
+                            {socmed.tiktok ? (
+                              <button
+                                className={`btn ${style.linkStick}`}
+                                type="button"
+                                onClick={() =>
+                                  window.open(`${socmed.tiktok}`, "_blank")
+                                }
+                              >
+                                Tiktok
+                              </button>
+                            ) : null}
+
+                            {/* WHATSAPP */}
+                            {socmed.whatsapp ? (
+                              <button
+                                className={`btn ${style.linkStick}`}
+                                type="button"
+                                onClick={() =>
+                                  window.open(`${socmed.whatsapp}`, "_blank")
+                                }
+                              >
+                                WhatsApp
+                              </button>
+                            ) : null}
+
+                            {/* YOUTUBE */}
+                            {socmed.youtube ? (
+                              <button
+                                className={`btn ${style.linkStick}`}
+                                type="button"
+                                onClick={() =>
+                                  window.open(`${socmed.youtube}`, "_blank")
+                                }
+                              >
+                                YouTube
+                              </button>
+                            ) : null}
+
+                            {/* TWITTER */}
+                            {socmed.twitter ? (
+                              <button
+                                className={`btn ${style.linkStick}`}
+                                type="button"
+                                onClick={() =>
+                                  window.open(`${socmed.twitter}`, "_blank")
+                                }
+                              >
+                                Twitter
+                              </button>
+                            ) : null}
+
+                            {/* GITHUB */}
+                            {socmed.github ? (
+                              <button
+                                className={`btn ${style.linkStick}`}
+                                type="button"
+                                onClick={() =>
+                                  window.open(`${socmed.github}`, "_blank")
+                                }
+                              >
+                                GitHub
+                              </button>
+                            ) : null}
+
+                            {/* LINKEDIN */}
+                            {socmed.linkedin ? (
+                              <button
+                                className={`btn ${style.linkStick}`}
+                                type="button"
+                                onClick={() =>
+                                  window.open(`${socmed.linkedin}`, "_blank")
+                                }
+                              >
+                                LinkedIn
+                              </button>
+                            ) : null}
+
+                            {/* SHOPEE */}
+                            {socmed.shopee ? (
+                              <button
+                                className={`btn ${style.linkStick}`}
+                                type="button"
+                                onClick={() =>
+                                  window.open(`${socmed.shopee}`, "_blank")
+                                }
+                              >
+                                Shopee
+                              </button>
+                            ) : null}
+
                             <style>
                               {`
                             ::-webkit-scrollbar {
-                              width: 0.3em;
+                              width: 0em;
                               height: 0.5em;
                             }
                             ::-webkit-scrollbar-thumb {
