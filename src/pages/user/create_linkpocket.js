@@ -73,6 +73,8 @@ export default function UserSetup() {
     },
   ]);
 
+  const [profile, setProfile] = React.useState([]);
+
   // // BUTTON CONDITION
   // const [checkActive, setCheckActive] = React.useState(false);
 
@@ -113,7 +115,7 @@ export default function UserSetup() {
         },
       })
       .then(() => {
-        // router.push("/profile/test");
+        router.push(`/profile/${title}`);
         // setUploadSuccess(true);
         // setUploadError(false);
       })
@@ -121,6 +123,15 @@ export default function UserSetup() {
         // setLoading(false);
       });
   };
+
+  React.useEffect(() => {
+    const checkProfile = localStorage?.getItem("profile")
+      ? JSON.parse(localStorage?.getItem("profile"))
+      : null;
+
+      setProfile(checkProfile);
+  }, []);
+  
 
   return (
     <div>
@@ -161,7 +172,7 @@ export default function UserSetup() {
                             </div>
                             <div className="d-flex justify-content-center align-items-center">
                               <h1 className={`${style.TitleName}`}>
-                                Maulana Ismail
+                                {profile.fullname}
                               </h1>
                             </div>
                           </div>
@@ -519,7 +530,7 @@ export default function UserSetup() {
                             </div>
                             <div className="d-flex justify-content-center align-items-center">
                               <h1 className={`${style.TitleName}`}>
-                                Maulana Ismail
+                                {profile.fullname}
                               </h1>
                             </div>
                           </div>
