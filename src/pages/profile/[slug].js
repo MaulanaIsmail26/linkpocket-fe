@@ -42,7 +42,7 @@ const styleModal = {
   border: "2px solid #323334",
   boxShadow: 24,
   p: 4,
-  color: "white",
+  color: "#03e9f4",
 };
 
 const styleIconCopy = {
