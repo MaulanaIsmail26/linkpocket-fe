@@ -47,7 +47,7 @@ export default function Login() {
         JSON.stringify(connect?.data?.data?.result)
       );
 
-      router.push("/profile/test");
+      router.push("/user/create_linkpocket");
       // console.log(connect);
     } catch (error) {
       // console.log(error?.response?.data?.messages);
