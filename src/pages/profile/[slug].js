@@ -78,9 +78,7 @@ export default function Profile() {
 
   // STATE FOR MODAL
   const [open, setOpen] = React.useState(false);
-  const [link, setLink] = React.useState(
-    `https://linkpocket.vercel.app/pocket_space/Ismail-Maulana-7YSHv2HMpBzNCDiPDGsJGE`
-  );
+  const [link, setLink] = React.useState(``);
   const [CheckCopy, setCheckCopy] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -94,23 +92,20 @@ export default function Profile() {
         },
       })
       .then(({ data }) => {
-        // console.log(data?.data[0]?.social_media);
+        // console.log(data?.data[0]?.slug);
         const test = JSON.parse(data?.data[0]?.social_media);
         setSocmed(test);
         setTitle(data?.data[0]?.title);
         setPhoto(data?.data[0]?.photo_profile);
         setDesc(data?.data[0]?.desc);
+        setLink(`linkpocket.vercel.app/pocket/${data?.data[0]?.slug}`);
       })
       .catch(() => setSocmed([]))
       .finally(() => {
         setIsLoading(false);
       });
   }, []);
-
-  // const test = JSON.parse(socmed);
-  // console.log(socmed);
-  // console.log(JSON.stringify(socmed));
-  console.log(socmed.facebook);
+  // console.log(link);
 
   return (
     <>
