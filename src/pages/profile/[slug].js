@@ -4,8 +4,16 @@ import style from "@/styles/pages/profile.module.scss";
 import Navbar from "components/organisms/navbar";
 import React from "react";
 import axios from "axios";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 import Link from "next/link";
 import BtnLink from "components/molecules/btnLink";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 // ICON
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -16,6 +24,49 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import DoneIcon from "@mui/icons-material/Done";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+// STYLE FOR MODAL
+const styleModal = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "#323334",
+  border: "2px solid #323334",
+  boxShadow: 24,
+  p: 4,
+  color: "white",
+};
+
+const styleIconCopy = {
+  "& label": {
+    color: "white",
+  },
+  "& label.Mui-focused": {
+    color: "#03e9f4",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#03e9f4",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "white",
+    },
+    "&:hover fieldset": {
+      borderColor: "white",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#03e9f4",
+    },
+  },
+};
 
 export default function Profile() {
   // const [socmed, setSocmed] = React.useState("");
@@ -24,6 +75,15 @@ export default function Profile() {
   const [photo, setPhoto] = React.useState([]);
   const [desc, setDesc] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+
+  // STATE FOR MODAL
+  const [open, setOpen] = React.useState(false);
+  const [link, setLink] = React.useState(
+    `https://linkpocket.vercel.app/pocket_space/Ismail-Maulana-7YSHv2HMpBzNCDiPDGsJGE`
+  );
+  const [CheckCopy, setCheckCopy] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   React.useEffect(() => {
     axios
@@ -232,13 +292,98 @@ export default function Profile() {
                                   </div>
                                 </div>
                               </div>
+                              {/* BUTTON SHARE */}
                               <div className="col-6 d-grid gap-2">
                                 <button
                                   type="button"
                                   className={`btn btn-primary ${style.btnShare}`}
+                                  onClick={handleOpen}
                                 >
                                   Share
                                 </button>
+                                <div>
+                                  <Modal
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                  >
+                                    <Box sx={styleModal}>
+                                      <Typography
+                                        id="modal-modal-title"
+                                        variant="h6"
+                                        component="h2"
+                                      >
+                                        Share your LinkPocket
+                                      </Typography>
+                                      <Typography
+                                        id="modal-modal-description"
+                                        sx={{ mt: 2 }}
+                                      >
+                                        <div className="row">
+                                          <div className={`col-12`}>
+                                            <div
+                                              className={`d-flex align-items-center justify-content-start ${style.buttonCopy}`}
+                                            >
+                                              <TextField
+                                                id="outlined-basic"
+                                                className={style.link}
+                                                sx={styleIconCopy}
+                                                // label={() => {
+                                                //   {
+                                                //     CheckCopy
+                                                //       ? "succes to copy your link"
+                                                //       : "Click to copy your link";
+                                                //   }
+                                                // }}
+                                                label={
+                                                  CheckCopy
+                                                    ? "succes to copy your link"
+                                                    : "Click to copy your link"
+                                                }
+                                                variant="outlined"
+                                                fullWidth
+                                                defaultValue={link}
+                                                inputProps={{
+                                                  readOnly: true,
+                                                  style: {
+                                                    color: "white",
+                                                  },
+                                                }}
+                                                InputProps={{
+                                                  startAdornment: (
+                                                    <InputAdornment position="start">
+                                                      {CheckCopy ? (
+                                                        <DoneIcon
+                                                          style={{
+                                                            color: "white",
+                                                          }}
+                                                        />
+                                                      ) : (
+                                                        <ContentCopyIcon
+                                                          style={{
+                                                            color: "white",
+                                                          }}
+                                                        />
+                                                      )}
+                                                    </InputAdornment>
+                                                  ),
+                                                }}
+                                                onClick={() => {
+                                                  navigator.clipboard.writeText(
+                                                    link
+                                                  );
+
+                                                  setCheckCopy(true);
+                                                }}
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </Typography>
+                                    </Box>
+                                  </Modal>
+                                </div>
                               </div>
                             </div>
                           </div>
