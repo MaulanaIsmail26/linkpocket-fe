@@ -20,6 +20,7 @@ export default function Login() {
   const [errEmail, setErrEmail] = React.useState(false);
   const [errPassword, setErrPassword] = React.useState(false);
   const [errPasswordNull, setErrPasswordNull] = React.useState(false);
+  const [dataVerification, setDataVerification] = React.useState(false);
 
   // FUNCTION LOGIN
   const handleSubmit = async () => {
@@ -47,7 +48,33 @@ export default function Login() {
         JSON.stringify(connect?.data?.data?.result)
       );
 
-      router.push("/user/create_linkpocket");
+      setDataVerification(true);
+
+      axios
+        .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/space`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then(({ data }) => {
+          console.log(data?.data[0]);
+          console.log(data?.data.length);
+          if (data?.data.length === 0) {
+            router.push("/user/create_linkpocket");
+          } else {
+            const checkProfile = localStorage?.getItem("profile")
+              ? JSON.parse(localStorage?.getItem("profile"))
+              : null;
+
+            router.push(`/profile/${checkProfile.fullname}`);
+          }
+        })
+        .catch(() => setDataVerification(false))
+        .finally(() => {
+          setIsLoading(false);
+        });
+
+      // router.push("/user/create_linkpocket");
       // console.log(connect);
     } catch (error) {
       // console.log(error?.response?.data?.messages);
@@ -103,109 +130,157 @@ export default function Login() {
       </Head>
       <main className={style.main}>
         <section className={`container-fluid ${style.login}`}>
-          <div className={`container`}>
-            <div className={`row`}>
-              <div
-                className={`col-12 position-relative ${style.formLoginSide}`}
-              >
-                {/* CARD FORM LOGIN */}
-                <div
-                  className={`position-absolute top-50 end-0 translate-middle-y px-sm-5 px-4 ${style.cardFormLogin}`}
-                >
-                  {/* TITLE CARD */}
-                  <div className={`row ${style.titleCard}`}>
-                    <div className={`col`}>
-                      <div className="d-flex justify-content-center">
-                        <Image
-                          src={require("/public/images/Icon-app-nooutline.webp")}
-                          className={`${style.iconApp}`}
-                          // width={500}
-                          height={75}
-                          alt="Icon-Linkpocket"
-                        />
-                      </div>
-                      <h5 className="d-flex justify-content-center">
-                        Please Login with your account
-                      </h5>
-                    </div>
-                  </div>
-
-                  {/* FORM REGISTER */}
-                  <div className={`row ${style.formLogin}`}>
-                    <div className={`col`}>
-                      <form>
-                        <div className={`mb-4 ${style.userbox}`}>
-                          <input
-                            type="text"
-                            name=""
-                            required=""
-                            onChange={(e) => setEmail(e.target.value)}
-                            onKeyDown={(event) => {
-                              if (event.key === "Enter") {
-                                handleSubmit;
-                              }
-                            }}
-                          />
-                          <label>Email</label>
-                          {errUserNotExist && !errPassword ? (
-                            <p className="mt-1">{`!${error}`}</p>
-                          ) : null}
-                          {errEmail ? (
-                            <p className="mt-1">{`!${errorEmail}`}</p>
-                          ) : null}
-                        </div>
-                        <div className={`${style.userbox}`}>
-                          <input
-                            type="password"
-                            name=""
-                            required=""
-                            onChange={(e) => setPassword(e.target.value)}
-                            onKeyDown={(event) => {
-                              if (event.key === "Enter") {
-                                handleSubmit;
-                              }
-                            }}
-                          />
-                          <label>Password</label>
-                          {errPassword ? (
-                            <p className="mt-1">{`!${error}`}</p>
-                          ) : null}
-                          {errPasswordNull && !errPassword ? (
-                            <p className="mt-1">{`!${errorPass}`}</p>
-                          ) : null}
-                        </div>
-                        <div className={`row ${style.areaLoginAndSignUp}`}>
-                          <div className={`col-12`}>
-                            <button
-                              className={`${style.btnLogin}`}
-                              onClick={handleSubmit}
-                              disabled={isLoading}
+          {dataVerification ? (
+            <>
+              <div className={`container-fluid ${style.dataVerification}`}>
+                <div className="container">
+                  <div className="row">
+                    <div
+                      className={`col-12 d-flex align-items-center ${style.container}`}
+                    >
+                      <div className={`${style.card}`}>
+                        <div
+                          className={`d-flex align-items-center justify-content-center ${style.containerInCard}`}
+                        >
+                          <div className="me-2 pt-sm-1 pt-2">
+                            <h4 style={{ color: "#03e9f4" }}>
+                              Login successful
+                            </h4>
+                            <p
+                              className={`d-flex justify-content-end ${style.dataVerif}`}
                             >
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                              {isLoading ? "Loading..." : "Login"}
-                            </button>
-                            <p className={`text-center ${style.textSignUp}`}>
-                              Anda belum punya akun?{" "}
-                              <Link
-                                href={"/auth/register"}
-                                className={`${style.signUp}`}
-                              >
-                                Buat disini
-                              </Link>
+                              Data verification
                             </p>
                           </div>
+                          <div className="">
+                            <div
+                              class="spinner-border text-info"
+                              style={{
+                                width: "5rem",
+                                height: "5rem",
+                                margin: "auto",
+                              }}
+                              role="status"
+                            >
+                              <span class="visually-hidden ">Loading...</span>
+                            </div>
+                          </div>
                         </div>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
-                {/* END CARD FORM REGISTER */}
               </div>
-            </div>
-          </div>
+            </>
+          ) : (
+            <>
+              <div className={`container`}>
+                <div className={`row`}>
+                  <div
+                    className={`col-12 position-relative ${style.formLoginSide}`}
+                  >
+                    {/* CARD FORM LOGIN */}
+                    <div
+                      className={`position-absolute top-50 end-0 translate-middle-y px-sm-5 px-4 ${style.cardFormLogin}`}
+                    >
+                      {/* TITLE CARD */}
+                      <div className={`row ${style.titleCard}`}>
+                        <div className={`col`}>
+                          <div className="d-flex justify-content-center">
+                            <Image
+                              src={require("/public/images/Icon-app-nooutline.webp")}
+                              className={`${style.iconApp}`}
+                              // width={500}
+                              height={75}
+                              alt="Icon-Linkpocket"
+                            />
+                          </div>
+                          <h5 className="d-flex justify-content-center">
+                            Please Login with your account
+                          </h5>
+                        </div>
+                      </div>
+
+                      {/* FORM REGISTER */}
+                      <div className={`row ${style.formLogin}`}>
+                        <div className={`col`}>
+                          <form>
+                            <div className={`mb-4 ${style.userbox}`}>
+                              <input
+                                type="text"
+                                name=""
+                                required=""
+                                onChange={(e) => setEmail(e.target.value)}
+                                onKeyDown={(event) => {
+                                  if (event.key === "Enter") {
+                                    handleSubmit;
+                                  }
+                                }}
+                              />
+                              <label>Email</label>
+                              {errUserNotExist && !errPassword ? (
+                                <p className="mt-1">{`!${error}`}</p>
+                              ) : null}
+                              {errEmail ? (
+                                <p className="mt-1">{`!${errorEmail}`}</p>
+                              ) : null}
+                            </div>
+                            <div className={`${style.userbox}`}>
+                              <input
+                                type="password"
+                                name=""
+                                required=""
+                                onChange={(e) => setPassword(e.target.value)}
+                                onKeyDown={(event) => {
+                                  if (event.key === "Enter") {
+                                    handleSubmit;
+                                  }
+                                }}
+                              />
+                              <label>Password</label>
+                              {errPassword ? (
+                                <p className="mt-1">{`!${error}`}</p>
+                              ) : null}
+                              {errPasswordNull && !errPassword ? (
+                                <p className="mt-1">{`!${errorPass}`}</p>
+                              ) : null}
+                            </div>
+                            <div className={`row ${style.areaLoginAndSignUp}`}>
+                              <div className={`col-12`}>
+                                <button
+                                  className={`${style.btnLogin}`}
+                                  onClick={handleSubmit}
+                                  disabled={isLoading}
+                                >
+                                  <span></span>
+                                  <span></span>
+                                  <span></span>
+                                  <span></span>
+                                  {isLoading ? "Loading..." : "Login"}
+                                </button>
+                                <p
+                                  className={`text-center ${style.textSignUp}`}
+                                >
+                                  Anda belum punya akun?{" "}
+                                  <Link
+                                    href={"/auth/register"}
+                                    className={`${style.signUp}`}
+                                  >
+                                    Buat disini
+                                  </Link>
+                                </p>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    {/* END CARD FORM REGISTER */}
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </section>
       </main>
     </>
