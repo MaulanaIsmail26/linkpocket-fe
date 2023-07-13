@@ -3,7 +3,7 @@
   padding: 0;
 
   .homePage {
-    background-image: url("../../../public/images/background-image-home.webp");
+    background-image: url("../../../public/images/background-image.webp");
     background-size: cover;
     // background-position: 0 -100px;
     background-repeat: no-repeat;
@@ -88,11 +88,11 @@
         }
 
         .profileCard {
-          margin-bottom: 28px;
+          margin-bottom: 18px;
 
           .photoProfile {
-            // width: 120px;
-            // height: 120px;
+            width: 120px;
+            height: 120px;
             object-fit: cover;
             border: 2px solid #03e9f4;
             border-radius: 15px;
@@ -100,8 +100,8 @@
 
           @media screen and (max-width:600px) {
             .photoProfile {
-              width: 130px;
-              height: 130px;
+              width: 100%;
+              height: 100%;
             }
           }
 
@@ -109,6 +109,12 @@
             color: #03e9f4;
             margin-top: -5px;
             margin-bottom: 3px;
+          }
+
+          @media screen and (max-width:600px) {
+            .username {
+              font-size: 23px;
+            }
           }
 
           .desc {
@@ -119,8 +125,14 @@
 
           @media screen and (max-width:600px) {
             .desc {
-              font-size: 14px;
+              font-size: 13px;
               margin-bottom: 6px;
+              margin-bottom: 6px;
+              height: 65px;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
             }
           }
 
@@ -130,7 +142,7 @@
             color: #03e9f4;
             font-size: 13px;
             height: 33px;
-            border-radius: 12px;
+            border-radius: 12px;;
           }
 
           .btnShare:hover {
@@ -141,10 +153,8 @@
         }
 
         .linkSection {
-          height: 57vh;
+          height: 65%;
           overflow: auto;
-          // border-radius: 20px;
-          // background-color: red;
 
           .linkStick {
             background-color: #00d3df;
@@ -168,7 +178,7 @@
 
         @media screen and (max-width:600px) {
           .linkSection {
-            height: 70%;
+            height: 69%;
           }
         }
       }
