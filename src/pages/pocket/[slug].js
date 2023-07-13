@@ -135,7 +135,7 @@ export default function Home() {
                                 alt="Icon-Linkpocket"
                               />
                             </div>
-                            <div className="col-sm-8 col-7">
+                            <div className="col-sm-8 col-7 ps-sm-2">
                               <h3 className={`${style.username}`}>
                                 {title || "TITLE"}
                               </h3>

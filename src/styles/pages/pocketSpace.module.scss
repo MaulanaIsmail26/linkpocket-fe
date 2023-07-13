@@ -133,6 +133,23 @@
               display: -webkit-box;
               -webkit-line-clamp: 3;
               -webkit-box-orient: vertical;
+              display: flex;
+              bottom: 0;
+            }
+          }
+
+          @media screen and (min-width:428px) and (max-width: 600px) {
+            .desc {
+              font-size: 14px;
+              margin-bottom: 6px;
+              margin-bottom: 6px;
+              height: 80px;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              display: flex;
+              bottom: 0;
             }
           }
 
