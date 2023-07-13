@@ -123,7 +123,7 @@ export default function Home() {
                       ) : (
                         <>
                           <div className={`row ${style.profileCard}`}>
-                            <div className="col-sm-4 col-5 p-sm-0 ps-3 pe-0 d-flex justify-content-center">
+                            <div className="col-sm-4 col-5 p-sm-0 ps-sm-3 ps-3 pe-0 d-flex justify-content-center">
                               <Image
                                 src={
                                   photo ||
@@ -135,7 +135,7 @@ export default function Home() {
                                 alt="Icon-Linkpocket"
                               />
                             </div>
-                            <div className="col-sm-8 col-7 ps-sm-2">
+                            <div className="col-sm-8 col-7">
                               <h3 className={`${style.username}`}>
                                 {title || "TITLE"}
                               </h3>
