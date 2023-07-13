@@ -123,7 +123,7 @@ export default function Home() {
                       ) : (
                         <>
                           <div className={`row ${style.profileCard}`}>
-                            <div className="col-sm-4 col-5">
+                            <div className="col-sm-4 col-5 p-sm-0 ps-3 pe-0 d-flex justify-content-center">
                               <Image
                                 src={
                                   photo ||
