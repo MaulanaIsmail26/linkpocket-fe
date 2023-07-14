@@ -13,6 +13,90 @@
   }
 }
 
+.btnMenu {
+  cursor: pointer;
+}
+
+// MODAL MENU
+.modalMenu {
+  padding: 0 20px;
+
+  .modalHeader {
+    border-color: #03e9f4;
+    color: #03e9f4;
+  }
+
+  .modalBody {
+    padding-top: 20px;
+    padding-bottom: 30px;
+
+    // COPY LINK SECTION
+    .CopyLink {
+      p {
+        color: white;
+        font-size: 18px;
+      }
+    }
+
+    // REGISTER SECTION
+    .registerSection {
+      padding-top: 30px;
+
+      p {
+        color: white;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .btnRegister {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #03e9f4;
+        color: #323334;
+        font-weight: 500;
+        border-color: #03e9f4;
+      }
+
+      .btnRegister:hover {
+        background-color: #02c0ca;
+        border-color: #02c0ca;
+      }
+    }
+
+    // LOGIN SECTION
+    .loginSection {
+      padding-top: 20px;
+
+      p {
+        text-align: center;
+        color: white;
+        font-size: 11px;
+      }
+
+      .btnLogin {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: transparent;
+        color: rgb(238, 238, 238);
+        font-weight: 500;
+        border-color: #03e9f4;
+      }
+
+      .btnLogin:hover {
+        background-color: #03e9f4;
+        border-color: #03e9f4;
+        color: #323334;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:600px) {
+  .modalMenu {
+    padding: 0;
+  }
+}
+
 .btnLoginRegister {
   .btnLogin {
     width: 75px;

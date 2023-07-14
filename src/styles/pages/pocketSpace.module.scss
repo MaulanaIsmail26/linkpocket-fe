@@ -39,7 +39,7 @@
             width: 170px;
             height: 100%;
           }
-
+          
           @media screen and (max-width:600px) {
             .iconApp {
               width: 140px;
@@ -47,42 +47,114 @@
             }
           }
 
-          .btnLoginRegister {
-            .btnLogin {
-              width: 75px;
-              height: 34px;
-              font-size: 14px;
-              border-radius: 12px;
-              margin-left: -5px;
+          .btnMenu {
+            cursor: pointer;
+          }
+
+          // MODAL MENU
+          .modalMenu {
+            padding: 0 20px;
+
+            .modalHeader {
               border-color: #03e9f4;
               color: #03e9f4;
             }
 
-            @media screen and (max-width:600px) {
-              .btnLogin{
-                margin-left: -18px;
+            .modalBody {
+              padding-top: 0;
+              padding-bottom: 30px;
+
+              // PHOTO PROFILE SECTION
+              .profile {
+                padding: 30px 0 5px 0;
+                .profilePicture {
+                  width: 80px;
+                  border:2px solid #03e9f4 ;
+                }
+              }
+
+              // USERNAME SECTION
+              .username {
+                margin-bottom: 10px;
+                .titleLogin {
+                  font-size: 25px;
+                  text-align: center;
+                  color: white;
+                  margin-bottom: 0;
+                }
+
+                .fullname {
+                  font-size: 13px;
+                  text-align: center;
+                  color: rgb(236, 236, 236);
+                  letter-spacing: 2px;
+                }
+              }
+
+              // COPY LINK SECTION
+              .CopyLink {
+                p {
+                  color: white;
+                  font-size: 18px;
+                }
+              }
+
+              // REGISTER SECTION
+              .registerSection {
+                padding-top: 30px;
+
+                p {
+                  color: white;
+                  font-size: 18px;
+                  margin-bottom: 10px;
+                }
+
+                .btnRegister {
+                  padding-top: 10px;
+                  padding-bottom: 10px;
+                  background-color: #03e9f4;
+                  color: #323334;
+                  font-weight: 500;
+                  border-color: #03e9f4;
+                }
+
+                .btnRegister:hover {
+                  background-color: #02c0ca;
+                  border-color: #02c0ca;
+                }
+              }
+
+              // LOGIN SECTION
+              .loginSection {
+                padding-top: 15px;
+
+                p {
+                  text-align: center;
+                  color: white;
+                  font-size: 11px;
+                }
+
+                .btnLogin {
+                  padding-top: 10px;
+                  padding-bottom: 10px;
+                  background-color: transparent;
+                  color: rgb(238, 238, 238);
+                  font-weight: 500;
+                  border-color: #03e9f4;
+                }
+
+                .btnLogin:hover {
+                  background-color: #03e9f4;
+                  border-color: #03e9f4;
+                  color: #323334;
+                }
               }
             }
+          }
 
-            .btnLogin:hover {
-              background-color: #03e9f4;
-              color: black;
-            }
-
-            .btnRegister {
-              width: 75px;
-              height: 34px;
-              font-size: 14px;
-              border-radius: 12px;
-              margin-left: 8px;
-              border-color: #03e9f4;
-              color: black;
-              background-color: #03e9f4;
-            }
-
-            .btnRegister:hover {
-              background-color: transparent;
-              color: #03e9f4;
+          @media screen and (max-width:600px) {
+            .modalMenu {
+              padding: 0;
             }
           }
         }
