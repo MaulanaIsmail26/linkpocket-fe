@@ -71,7 +71,7 @@ const styleIconCopy = {
 export default function Profile() {
   // const [socmed, setSocmed] = React.useState("");
   const [socmed, setSocmed] = React.useState([]);
-  const [title, setTitle] = React.useState([]);
+  const [title, setTitle] = React.useState("");
   const [photo, setPhoto] = React.useState([]);
   const [desc, setDesc] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -156,29 +156,26 @@ export default function Profile() {
                       </div>
                       {/* PROFILE SECTION */}
                       <div className={`row ${style.profileCard}`}>
-                        <div className="col-sm-4 col-5">
+                        <div className="col-sm-4 col-5 p-sm-0 ps-sm-3 ps-3 pe-0 d-flex justify-content-center">
                           <Image
-                            // src={require("/public/images/IMG_20230116_093528.jpg")}
-                            src={
-                              photo ||
-                              `https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1200px-User-avatar.svg.png`
-                            }
+                            src={photo}
                             className={` ${style.photoProfile}`}
-                            width={130}
-                            height={130}
-                            alt="photo-profile"
+                            width={120}
+                            height={120}
+                            alt="Icon-Linkpocket"
                           />
                         </div>
                         <div className="col-sm-8 col-7">
-                          <h3 className={`${style.username}`}>
-                            {title || "TITLE"}
-                          </h3>
-                          <p className={`${style.desc}`}>
-                            {desc || "DESCRIPTION"}
-                          </p>
+                          {title.length <= 14 ? (
+                            <h3 className={`${style.username14}`}>{title}</h3>
+                          ) : (
+                            <h3 className={`${style.username16}`}>{title}</h3>
+                          )}
+                          <p className={`${style.desc}`}>{desc}</p>
                           <div className="d-grid gap-2">
                             <div className="row">
-                              <div className="col-6 d-grid gap-2">
+                              {/* BUTTON EDIT */}
+                              <div className="col-6 pb-0 pe-1 d-grid gap-2">
                                 <button
                                   type="button"
                                   className={`btn btn-primary ${style.btnShare}`}
@@ -288,7 +285,7 @@ export default function Profile() {
                                 </div>
                               </div>
                               {/* BUTTON SHARE */}
-                              <div className="col-6 d-grid gap-2">
+                              <div className="col-6 pb-0 ps-1 d-grid gap-2">
                                 <button
                                   type="button"
                                   className={`btn btn-primary ${style.btnShare}`}
