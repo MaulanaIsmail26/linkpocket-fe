@@ -60,6 +60,7 @@ export default function Home() {
   // STATE USER LOGIN
   const [fullname, setFullname] = React.useState([]);
   const [titleLogin, setTitleLogin] = React.useState([]);
+  const [photoLogin, setPhotoLogin] = React.useState([]);
 
   React.useEffect(() => {
     const id = location.pathname.split("/")[2];
@@ -100,6 +101,7 @@ export default function Home() {
       .then(({ data }) => {
         // console.log(data?.data[0]?.title);
         setTitleLogin(data?.data[0]?.title);
+        setPhotoLogin(data?.data[0]?.photo_profile);
       })
       .catch(() => setTitleLogin([]));
   }, []);
@@ -224,7 +226,7 @@ export default function Home() {
                                             className={`col-12 px-4 ${style.profile}`}
                                           >
                                             <img
-                                              src={photo}
+                                              src={photoLogin}
                                               className={`rounded mx-auto d-block rounded-circle ${style.profilePicture}`}
                                               alt="photo-profile"
                                             ></img>
