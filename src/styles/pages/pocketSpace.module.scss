@@ -18,7 +18,7 @@
 
       .cardLinkPocket {
         // margin-top: 27px;
-        width: 450px;
+        width: 460px;
         // width: min(450px, 98%);
         height: 95%;
         padding-top: 20px;
@@ -69,6 +69,8 @@
                 padding: 30px 0 5px 0;
                 .profilePicture {
                   width: 80px;
+                  height: 80px;
+                  object-fit: cover;
                   border:2px solid #03e9f4 ;
                 }
               }
@@ -178,15 +180,31 @@
             }
           }
 
-          .username {
+          // .username {
+          //   color: #03e9f4;
+          //   margin-top: -5px;
+          //   margin-bottom: 3px;
+          // }
+
+          // @media screen and (max-width:600px) {
+          //   .username {
+          //     font-size: 23px;
+          //   }
+          // }
+
+          .username14, .username16 {
             color: #03e9f4;
             margin-top: -5px;
             margin-bottom: 3px;
           }
 
           @media screen and (max-width:600px) {
-            .username {
-              font-size: 23px;
+            .username14 {
+              font-size: 22px;
+            }
+
+            .username16 {
+              font-size: 21px;
             }
           }
 
@@ -199,7 +217,7 @@
 
           @media screen and (max-width:600px) {
             .desc {
-              font-size: 13px;
+              font-size: 12px;
               margin-bottom: 6px;
               margin-bottom: 6px;
               height: 65px;
@@ -214,7 +232,7 @@
 
           @media screen and (min-width:400px) and (max-width: 600px) {
             .desc {
-              font-size: 13px;
+              font-size: 12px;
               margin-bottom: 6px;
               margin-bottom: 6px;
               height: 80px;
