@@ -3,7 +3,7 @@
   padding: 0;
 
   .profile {
-    background-image: url("../../../public/images/background-image-profile.webp");
+    background-image: url("../../../public/images/background-image.webp");
     background-size: cover;
     // background-position: 0 -100px;
     background-repeat: no-repeat;
@@ -18,11 +18,11 @@
 
       .cardLinkPocket {
         // margin-top: 27px;
-        width: 450px;
+        width: 460px;
         height: 95%;
         padding-top: 20px;
         padding-bottom: 20px;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0));
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0));
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
@@ -46,42 +46,19 @@
             }
           }
 
-          .btnLoginRegister {
-            .btnLogin {
-              width: 75px;
-              height: 34px;
-              font-size: 14px;
-              border-radius: 12px;
-              margin-left: -5px;
-              border-color: #03e9f4;
-              color: #03e9f4;
-            }
-
-            @media screen and (max-width:600px) {
-              .btnLogin {
-                margin-left: -18px;
-              }
-            }
-
-            .btnLogin:hover {
+          .btnLogout {
+            .logout {
               background-color: #03e9f4;
-              color: black;
-            }
-
-            .btnRegister {
-              width: 75px;
-              height: 34px;
-              font-size: 14px;
-              border-radius: 12px;
-              margin-left: 8px;
               border-color: #03e9f4;
-              color: black;
-              background-color: #03e9f4;
+              color: #242424;
+              font-weight: 500;
+              font-size: 13px;
+              border-radius: 10px;
             }
 
-            .btnRegister:hover {
-              background-color: transparent;
-              color: #03e9f4;
+            .logout:hover {
+              background-color: #02c0ca;
+              border-color: #02c0ca;
             }
           }
         }
