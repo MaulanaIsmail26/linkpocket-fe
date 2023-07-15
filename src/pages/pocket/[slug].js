@@ -47,7 +47,7 @@ const styleIconCopy = {
 
 export default function Home() {
   const [socmed, setSocmed] = React.useState([]);
-  const [title, setTitle] = React.useState([]);
+  const [title, setTitle] = React.useState("");
   const [photo, setPhoto] = React.useState([]);
   const [desc, setDesc] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -104,10 +104,10 @@ export default function Home() {
       .catch(() => setTitleLogin([]));
   }, []);
 
-    // const checkProfile = localStorage.getItem("profile")
-    //   ? JSON.parse(localStorage.getItem("profile"))
-    //   : null;
-    // const [titleLogin, setTitleLogin] = React.useState(checkProfile);
+  // const checkProfile = localStorage.getItem("profile")
+  //   ? JSON.parse(localStorage.getItem("profile"))
+  //   : null;
+  // const [titleLogin, setTitleLogin] = React.useState(checkProfile);
 
   React.useEffect(() => {
     const checkProfile = localStorage?.getItem("profile")
@@ -161,6 +161,7 @@ export default function Home() {
                     </div>
                   ) : (
                     <>
+                      {/* NAVBAR */}
                       {dataNull ? null : (
                         <div className={`row ${style.titleCard}`}>
                           <div className={`col`}>
@@ -383,10 +384,7 @@ export default function Home() {
                           <div className={`row ${style.profileCard}`}>
                             <div className="col-sm-4 col-5 p-sm-0 ps-sm-3 ps-3 pe-0 d-flex justify-content-center">
                               <Image
-                                src={
-                                  photo ||
-                                  `https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1200px-User-avatar.svg.png`
-                                }
+                                src={photo}
                                 className={` ${style.photoProfile}`}
                                 width={120}
                                 height={120}
@@ -394,12 +392,16 @@ export default function Home() {
                               />
                             </div>
                             <div className="col-sm-8 col-7">
-                              <h3 className={`${style.username}`}>
-                                {title || "TITLE"}
-                              </h3>
-                              <p className={`${style.desc}`}>
-                                {desc || "DESCRIPTION"}
-                              </p>
+                              {title.length <= 14 ? (
+                                <h3 className={`${style.username14}`}>
+                                  {title}
+                                </h3>
+                              ) : (
+                                <h3 className={`${style.username16}`}>
+                                  {title}
+                                </h3>
+                              )}
+                              <p className={`${style.desc}`}>{desc}</p>
                               <div className="d-grid gap-2">
                                 <Link
                                   type="button"
