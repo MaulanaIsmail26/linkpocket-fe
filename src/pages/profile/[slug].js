@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import style from "@/styles/pages/profile.module.scss";
-import Navbar from "components/organisms/navbar";
 import React from "react";
 import axios from "axios";
 import Box from "@mui/material/Box";
@@ -152,7 +151,26 @@ export default function Profile() {
                   ) : (
                     <>
                       <div className={`row ${style.titleCard}`}>
-                        <Navbar />
+                        <div className={`col`}>
+                          <div className="d-flex justify-content-between">
+                            <Image
+                              src={require("/public/images/Icon-app-nooutline.webp")}
+                              className={` ${style.iconApp}`}
+                              // width={500}
+                              // height={65}
+                              alt="Icon-Linkpocket"
+                            />
+                            <div className={` ${style.btnLogout}`}>
+                              <Link
+                                type="button"
+                                className={`btn btn-primary ${style.logout}`}
+                                href={"/auth/register"}
+                              >
+                                Logout
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       {/* PROFILE SECTION */}
                       <div className={`row ${style.profileCard}`}>
