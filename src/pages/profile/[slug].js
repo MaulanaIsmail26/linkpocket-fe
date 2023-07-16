@@ -82,6 +82,9 @@ export default function Profile() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+    // STATE FOR BUTTON EDIT
+  const [slug, setSlug] = React.useState(``);
+
   React.useEffect(() => {
     axios
       .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/space`, {
@@ -98,6 +101,8 @@ export default function Profile() {
         setPhoto(data?.data[0]?.photo_profile);
         setDesc(data?.data[0]?.desc);
         setLink(`linkpocket.vercel.app/pocket/${data?.data[0]?.slug}`);
+
+        setSlug(`${data?.data[0]?.slug}`);
       })
       .catch(() => setSocmed([]))
       .finally(() => {
@@ -194,113 +199,13 @@ export default function Profile() {
                             <div className="row">
                               {/* BUTTON EDIT */}
                               <div className="col-6 pb-0 pe-1 d-grid gap-2">
-                                <button
+                                <Link
                                   type="button"
                                   className={`btn btn-primary ${style.btnShare}`}
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#staticBackdrop1"
+                                  href={`/profile/edit/${slug}`}
                                 >
                                   Edit
-                                </button>
-                                {/* POPUP EDIT PROFILE */}
-                                <div
-                                  className={`modal fade ${style.modalEdit}`}
-                                  id="staticBackdrop1"
-                                  data-bs-backdrop="static"
-                                  data-bs-keyboard="false"
-                                  tabindex="-1"
-                                  aria-labelledby="staticBackdropLabel"
-                                  aria-hidden="true"
-                                >
-                                  <div className="modal-dialog modal-dialog-centered">
-                                    <div
-                                      className={`modal-content ${style.modalContainer}`}
-                                    >
-                                      <div className="modal-header">
-                                        <h1
-                                          className="modal-title fs-5"
-                                          id="staticBackdropLabel"
-                                        >
-                                          Edit Profile
-                                        </h1>
-                                        <button
-                                          type="button"
-                                          className="btn-close"
-                                          data-bs-dismiss="modal"
-                                          aria-label="Close"
-                                        ></button>
-                                      </div>
-                                      <div
-                                        className={`modal-body ${style.modalBody}`}
-                                      >
-                                        <div className={`row`}>
-                                          {/* EDIT PROFILE PICTURE */}
-                                          <div
-                                            className={`col-4 ${style.editProfilePicture}`}
-                                          >
-                                            <Image
-                                              src={require("/public/images/IMG_20230116_093528.jpg")}
-                                              className={` ${style.photoProfile}`}
-                                              // width={500}
-                                              // height={65}
-                                              alt="Icon-Linkpocket"
-                                            />
-                                          </div>
-                                          {/* EDIT USERNAME AND DESCRIPTION */}
-                                          <div
-                                            className={`col-8 ${style.editUsernameAndDesc}`}
-                                          >
-                                            <form>
-                                              <div className="mb-3">
-                                                <input
-                                                  type="text"
-                                                  className={`form-control ${style.formUsername}`}
-                                                  placeholder="Title or Username"
-                                                />
-                                              </div>
-                                              <div className="mb-3">
-                                                <textarea
-                                                  type="textarea"
-                                                  className={`form-control ${style.formDesc}`}
-                                                  placeholder="Description"
-                                                  maxlength="60"
-                                                />
-                                              </div>
-                                            </form>
-                                          </div>
-                                        </div>
-                                        {/* EDIT BACKGROUND */}
-                                        <div
-                                          className={`row ${style.editBackground}`}
-                                        >
-                                          <div className="col-12">
-                                            <input
-                                              class="form-control"
-                                              type="file"
-                                              id="formFileMultiple"
-                                              multiple
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div className="modal-footer">
-                                        <button
-                                          type="button"
-                                          className="btn btn-secondary"
-                                          data-bs-dismiss="modal"
-                                        >
-                                          Close
-                                        </button>
-                                        <button
-                                          type="button"
-                                          className="btn btn-primary"
-                                        >
-                                          Understood
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
+                                </Link>
                               </div>
                               {/* BUTTON SHARE */}
                               <div className="col-6 pb-0 ps-1 d-grid gap-2">
