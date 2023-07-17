@@ -32,9 +32,37 @@ export default function Edit() {
   //   },
   // ]);
 
+  // CHECK IS LOGIN
+  React.useEffect(() => {
+    setIsLoading(true);
+    if (!localStorage.getItem("profile")) {
+      router.push(`/auth/login`);
+    }
+
+    if (localStorage.getItem("profile")) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/space`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then(({ data }) => {
+          // console.log(data?.data[0]);
+          // console.log(data?.data.length);
+          if (data?.data.length === 0) {
+            router.push(`/user/create_linkpocket`);
+          }
+        })
+        .catch()
+        .finally(() => {
+          // setIsLoading(false);
+        });
+    }
+  }, []);
+
   // STATE FOR EDIT
   const [slug, setSlug] = React.useState(``);
-  const convertSlug = slug.split("-").slice(0, 2).join("-")
+  const convertSlug = slug.split("-").slice(0, 2).join("-");
 
   // GET USER DATA
   React.useEffect(() => {
