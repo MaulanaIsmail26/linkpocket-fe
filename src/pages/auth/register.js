@@ -26,6 +26,17 @@ export default function Register() {
   const [success, setSuccess] = React.useState(false);
   const [notif, setNotif] = React.useState(false);
 
+  // CHECK IS LOGIN
+  React.useEffect(() => {
+    if (localStorage.getItem("profile")) {
+      const checkProfile = localStorage?.getItem("profile")
+        ? JSON.parse(localStorage?.getItem("profile"))
+        : null;
+
+      router.push(`/profile/${checkProfile.fullname}`);
+    }
+  }, []);
+
   const handleSubmit = async () => {
     try {
       setIsLoading(true);
