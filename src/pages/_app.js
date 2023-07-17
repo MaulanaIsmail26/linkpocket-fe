@@ -5,7 +5,7 @@ import React from "react";
 
 export default function App({ Component, pageProps }) {
   React.useEffect(() => {
-    var hours = 1; // to clear the localStorage after 1 hour
+    var hours = 12; // to clear the localStorage after 1 hour
     // (if someone want to clear after 8hrs simply change hours=8)
     var now = new Date().getTime();
     var setupTime = localStorage.getItem("setupTime");
