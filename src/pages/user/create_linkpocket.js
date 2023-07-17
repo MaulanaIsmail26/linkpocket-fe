@@ -97,27 +97,33 @@ export default function UserSetup() {
 
   // CHECK IS LOGIN
   React.useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/space`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then(({ data }) => {
-        console.log(data?.data[0]);
-        console.log(data?.data.length);
-        if (data?.data.length > 0) {
-          const checkProfile = localStorage?.getItem("profile")
-            ? JSON.parse(localStorage?.getItem("profile"))
-            : null;
+    if (!localStorage.getItem("profile")) {
+      router.push(`/auth/login`);
+    }
 
-          router.push(`/profile/${checkProfile.fullname}`);
-        }
-      })
-      .catch()
-      .finally(() => {
-        // setIsLoading(false);
-      });
+    if (localStorage.getItem("profile")) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/space`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then(({ data }) => {
+          console.log(data?.data[0]);
+          console.log(data?.data.length);
+          if (data?.data.length > 0) {
+            const checkProfile = localStorage?.getItem("profile")
+              ? JSON.parse(localStorage?.getItem("profile"))
+              : null;
+
+            router.push(`/profile/${checkProfile.fullname}`);
+          }
+        })
+        .catch()
+        .finally(() => {
+          // setIsLoading(false);
+        });
+    }
   }, []);
 
   // ADD LINKPOCKET
@@ -196,7 +202,7 @@ export default function UserSetup() {
                             </div>
                             <div className="d-flex justify-content-center align-items-center">
                               <h1 className={`${style.TitleName}`}>
-                                {profile.fullname}
+                                {profile?.fullname}
                               </h1>
                             </div>
                           </div>
@@ -220,7 +226,7 @@ export default function UserSetup() {
                                 className={`${style.form}`}
                                 color="primary"
                                 id="outlined-basic name"
-                                label="Name LinkPocket"
+                                label="LinkPocket Name"
                                 fullWidth
                                 variant="outlined"
                                 inputProps={{
@@ -267,7 +273,7 @@ export default function UserSetup() {
                               />
 
                               {/* CHECKBOX */}
-                              <FormControlLabel
+                              {/* <FormControlLabel
                                 control={
                                   <Checkbox
                                     sx={{
@@ -296,10 +302,10 @@ export default function UserSetup() {
                                 //   }
                                 //   test()
                                 // }}
-                              />
+                              /> */}
 
                               {/* BUTTON NEXT */}
-                              <div className="d-flex justify-content-end">
+                              <div className="d-flex justify-content-end mt-3">
                                 <button
                                   className={`btn ${style.btnNext}`}
                                   disabled={title.length == 0}
