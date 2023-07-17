@@ -26,6 +26,7 @@ export default function Edit() {
 
   // STATE FOR EDIT
   const [slug, setSlug] = React.useState(``);
+  const convertSlug = slug.split("-").slice(0, 2).join("-");
 
   // GET USER DATA
   React.useEffect(() => {
@@ -76,7 +77,7 @@ export default function Edit() {
         }
       )
       .then(() => {
-        router.push(`/profile/${slug}`);
+        router.push(`/profile/${convertSlug}`);
       })
       .finally(() => {
         // setIsLoading(false);
@@ -334,7 +335,7 @@ export default function Edit() {
                                     onClick={() => {
                                       setIsLoading(true);
                                     }}
-                                    href={`/profile/${slug}`}
+                                    href={`/profile/${convertSlug}`}
                                   >
                                     {"Cancel"}
                                   </Link>
