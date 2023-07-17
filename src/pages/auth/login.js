@@ -22,6 +22,17 @@ export default function Login() {
   const [errPasswordNull, setErrPasswordNull] = React.useState(false);
   const [dataVerification, setDataVerification] = React.useState(false);
 
+  // CHECK IS LOGIN
+  React.useEffect(() => {
+    if (localStorage.getItem("profile")) {
+      const checkProfile = localStorage?.getItem("profile")
+        ? JSON.parse(localStorage?.getItem("profile"))
+        : null;
+
+      router.push(`/profile/${checkProfile.fullname}`);
+    }
+  }, []);
+
   // FUNCTION LOGIN
   const handleSubmit = async () => {
     try {
