@@ -66,7 +66,6 @@ export default function Home() {
   const [checkIsLogin, setCheckIsLogin] = React.useState(false);
   React.useEffect(() => {
     if (!localStorage.getItem("token")) {
-      // navigate("/login");
       setCheckIsLogin(false);
     }
 
@@ -79,10 +78,13 @@ export default function Home() {
     }
 
     if (localStorage.getItem("token")) {
-      // navigate("/login");
       setCheckIsLogin(true);
     }
   }, []);
+
+  // STATE FOR BUTTON PROFILE
+  const [slug, setSlug] = React.useState(``);
+  const convertSlug = slug.split("-").slice(0, 2).join("-");
 
   // GET USER DATA
   React.useEffect(() => {
@@ -125,6 +127,8 @@ export default function Home() {
         // console.log(data?.data[0]?.title);
         setTitleLogin(data?.data[0]?.title);
         setPhotoLogin(data?.data[0]?.photo_profile);
+        
+        setSlug(`${data?.data[0]?.slug}`);
       })
       .catch(() => setTitleLogin([]));
   }, []);
@@ -243,7 +247,7 @@ export default function Home() {
                                       <div
                                         className={`modal-body pt-3 pb-4 ${style.modalBody}`}
                                       >
-                                        {/* PHOTO, FULLNAME AND LINKPOCKET TITLE */}
+                                        {/* PHOTO, FULLNAME, LINKPOCKET TITLE AND BUTTON PROFILE */}
                                         {checkIsLogin ? (
                                           <>
                                             {/* PHOTO PROFILE SECTION */}
@@ -274,6 +278,13 @@ export default function Home() {
                                                 >
                                                   {fullname}
                                                 </p>
+                                                <Link
+                                                  type="button"
+                                                  className={`btn btn-primary d-flex justify-content-center mb-4 ${style.btnProfile}`}
+                                                  href={`/profile/${convertSlug}`}
+                                                >
+                                                  Go to Profile
+                                                </Link>
                                               </div>
                                             </div>
                                           </>
@@ -331,7 +342,7 @@ export default function Home() {
                                           </div>
                                         </div>
 
-                                          {/* BUTTON REGISTER AND LOGIN */}
+                                        {/* BUTTON REGISTER AND LOGIN */}
                                         {!checkIsLogin ? (
                                           <>
                                             {/* REGISTER SECTION */}

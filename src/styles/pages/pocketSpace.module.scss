@@ -91,6 +91,20 @@
                   color: rgb(236, 236, 236);
                   letter-spacing: 2px;
                 }
+
+                .btnProfile {
+                  background-color: #03e9f4;
+                  border-color: #03e9f4;
+                  color: #242424;
+                  font-weight: 500;
+                  font-size: 13px;
+                  border-radius: 8px;
+                }
+
+                .btnProfile:hover {
+                  background-color: #02c0ca;
+                  border-color: #02c0ca;
+                }
               }
 
               // COPY LINK SECTION
@@ -98,6 +112,12 @@
                 p {
                   color: white;
                   font-size: 18px;
+                }
+
+                @media screen and (max-width:600px) {
+                  p {
+                    font-size: 16px;
+                  }
                 }
               }
 
