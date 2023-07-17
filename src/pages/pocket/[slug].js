@@ -62,6 +62,29 @@ export default function Home() {
   const [titleLogin, setTitleLogin] = React.useState([]);
   const [photoLogin, setPhotoLogin] = React.useState([]);
 
+  // STATE FOR CHECK LOGIN
+  const [checkIsLogin, setCheckIsLogin] = React.useState(false);
+  React.useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      // navigate("/login");
+      setCheckIsLogin(false);
+    }
+
+    if (!localStorage.getItem("profile")) {
+      setCheckIsLogin(false);
+    }
+
+    if (localStorage.getItem("profile")) {
+      setCheckIsLogin(true);
+    }
+
+    if (localStorage.getItem("token")) {
+      // navigate("/login");
+      setCheckIsLogin(true);
+    }
+  }, []);
+
+  // GET USER DATA
   React.useEffect(() => {
     const id = location.pathname.split("/")[2];
 
@@ -116,7 +139,7 @@ export default function Home() {
       ? JSON.parse(localStorage?.getItem("profile"))
       : null;
 
-    setFullname(checkProfile.fullname);
+    setFullname(checkProfile?.fullname);
   }, []);
 
   return (
@@ -218,36 +241,43 @@ export default function Home() {
                                         ></button>
                                       </div>
                                       <div
-                                        className={`modal-body ${style.modalBody}`}
+                                        className={`modal-body pt-3 pb-4 ${style.modalBody}`}
                                       >
-                                        {/* PHOTO PROFILE SECTION */}
-                                        <div className="row">
-                                          <div
-                                            className={`col-12 px-4 ${style.profile}`}
-                                          >
-                                            <img
-                                              src={photoLogin}
-                                              className={`rounded mx-auto d-block rounded-circle ${style.profilePicture}`}
-                                              alt="photo-profile"
-                                            ></img>
-                                          </div>
-                                        </div>
+                                        {/* PHOTO, FULLNAME AND LINKPOCKET TITLE */}
+                                        {checkIsLogin ? (
+                                          <>
+                                            {/* PHOTO PROFILE SECTION */}
+                                            <div className="row">
+                                              <div
+                                                className={`col-12 pb-2 ${style.profile}`}
+                                              >
+                                                <img
+                                                  src={photoLogin}
+                                                  className={`rounded mx-auto d-block rounded-circle ${style.profilePicture}`}
+                                                  alt="photo-profile"
+                                                ></img>
+                                              </div>
+                                            </div>
 
-                                        {/* COPY LINK SECTION */}
-                                        <div className="row">
-                                          <div
-                                            className={`col-12 px-4 ${style.username}`}
-                                          >
-                                            <p
-                                              className={`${style.titleLogin}`}
-                                            >
-                                              {titleLogin}
-                                            </p>
-                                            <p className={`${style.fullname}`}>
-                                              {fullname}
-                                            </p>
-                                          </div>
-                                        </div>
+                                            {/* FULLNAME AND LINKPOCKET TITLE */}
+                                            <div className="row">
+                                              <div
+                                                className={`col-12 px-4 ${style.username}`}
+                                              >
+                                                <p
+                                                  className={`${style.titleLogin}`}
+                                                >
+                                                  {titleLogin}
+                                                </p>
+                                                <p
+                                                  className={`${style.fullname}`}
+                                                >
+                                                  {fullname}
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </>
+                                        ) : null}
 
                                         {/* COPY LINK SECTION */}
                                         <div className="row">
@@ -301,44 +331,49 @@ export default function Home() {
                                           </div>
                                         </div>
 
-                                        {/* REGISTER SECTION */}
-                                        <div className="row">
-                                          <div
-                                            className={`col-12 px-4 ${style.registerSection}`}
-                                          >
-                                            <p>
-                                              Register and create your own
-                                              LinkPocket
-                                            </p>
-                                            <div className="d-grid gap-2">
-                                              <Link
-                                                className={`btn btn-primary ${style.btnRegister}`}
-                                                type="button"
-                                                href={"/auth/register"}
+                                          {/* BUTTON REGISTER AND LOGIN */}
+                                        {!checkIsLogin ? (
+                                          <>
+                                            {/* REGISTER SECTION */}
+                                            <div className="row">
+                                              <div
+                                                className={`col-12 px-4 ${style.registerSection}`}
                                               >
-                                                Register Free
-                                              </Link>
+                                                <p>
+                                                  Register and create your own
+                                                  LinkPocket
+                                                </p>
+                                                <div className="d-grid gap-2">
+                                                  <Link
+                                                    className={`btn btn-primary ${style.btnRegister}`}
+                                                    type="button"
+                                                    href={"/auth/register"}
+                                                  >
+                                                    Register Free
+                                                  </Link>
+                                                </div>
+                                              </div>
                                             </div>
-                                          </div>
-                                        </div>
 
-                                        {/* LOGIN SECTION */}
-                                        <div className="row">
-                                          <div
-                                            className={`col-12 px-4 ${style.loginSection}`}
-                                          >
-                                            <p>Already have an account?</p>
-                                            <div className="d-grid gap-2">
-                                              <Link
-                                                className={`btn btn-primary ${style.btnLogin}`}
-                                                type="button"
-                                                href={"/auth/login"}
+                                            {/* LOGIN SECTION */}
+                                            <div className="row">
+                                              <div
+                                                className={`col-12 px-4 ${style.loginSection}`}
                                               >
-                                                Login
-                                              </Link>
+                                                <p>Already have an account?</p>
+                                                <div className="d-grid gap-2">
+                                                  <Link
+                                                    className={`btn btn-primary ${style.btnLogin}`}
+                                                    type="button"
+                                                    href={"/auth/login"}
+                                                  >
+                                                    Login
+                                                  </Link>
+                                                </div>
+                                              </div>
                                             </div>
-                                          </div>
-                                        </div>
+                                          </>
+                                        ) : null}
                                       </div>
                                     </div>
                                     <style>
