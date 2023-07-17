@@ -95,6 +95,31 @@ export default function UserSetup() {
   //   }
   // }
 
+  // CHECK IS LOGIN
+  React.useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/space`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(({ data }) => {
+        console.log(data?.data[0]);
+        console.log(data?.data.length);
+        if (data?.data.length > 0) {
+          const checkProfile = localStorage?.getItem("profile")
+            ? JSON.parse(localStorage?.getItem("profile"))
+            : null;
+
+          router.push(`/profile/${checkProfile.fullname}`);
+        }
+      })
+      .catch()
+      .finally(() => {
+        // setIsLoading(false);
+      });
+  }, []);
+
   // ADD LINKPOCKET
   const sendData = () => {
     let bodyFormData = new FormData();
@@ -129,9 +154,8 @@ export default function UserSetup() {
       ? JSON.parse(localStorage?.getItem("profile"))
       : null;
 
-      setProfile(checkProfile);
+    setProfile(checkProfile);
   }, []);
-  
 
   return (
     <div>
