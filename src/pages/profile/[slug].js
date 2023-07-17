@@ -13,6 +13,7 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { useRouter } from "next/router";
 
 // ICON
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -68,7 +69,7 @@ const styleIconCopy = {
 };
 
 export default function Profile() {
-  // const [socmed, setSocmed] = React.useState("");
+  const router = useRouter();
   const [socmed, setSocmed] = React.useState([]);
   const [title, setTitle] = React.useState("");
   const [photo, setPhoto] = React.useState([]);
@@ -82,7 +83,7 @@ export default function Profile() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-    // STATE FOR BUTTON EDIT
+  // STATE FOR BUTTON EDIT
   const [slug, setSlug] = React.useState(``);
   const convertSlug = slug.split("-").slice(0, 2).join("-");
 
@@ -167,13 +168,17 @@ export default function Profile() {
                               alt="Icon-Linkpocket"
                             />
                             <div className={` ${style.btnLogout}`}>
-                              <Link
+                              <button
                                 type="button"
                                 className={`btn btn-primary ${style.logout}`}
-                                href={"/auth/register"}
+                                onClick={() => {
+                                  localStorage.clear();
+
+                                  router.push(`/`);
+                                }}
                               >
                                 Logout
-                              </Link>
+                              </button>
                             </div>
                           </div>
                         </div>
