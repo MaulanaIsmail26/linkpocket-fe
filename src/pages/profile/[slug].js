@@ -84,6 +84,7 @@ export default function Profile() {
 
     // STATE FOR BUTTON EDIT
   const [slug, setSlug] = React.useState(``);
+  const convertSlug = slug.split("-").slice(0, 2).join("-");
 
   React.useEffect(() => {
     axios
@@ -202,7 +203,7 @@ export default function Profile() {
                                 <Link
                                   type="button"
                                   className={`btn btn-primary ${style.btnShare}`}
-                                  href={`/profile/edit/${slug}`}
+                                  href={`/profile/edit/${convertSlug}`}
                                 >
                                   Edit
                                 </Link>
