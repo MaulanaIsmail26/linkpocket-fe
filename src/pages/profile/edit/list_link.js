@@ -47,8 +47,6 @@ export default function Edit() {
           },
         })
         .then(({ data }) => {
-          // console.log(data?.data[0]);
-          // console.log(data?.data.length);
           if (data?.data.length === 0) {
             router.push(`/user/create_linkpocket`);
           }
@@ -73,22 +71,15 @@ export default function Edit() {
         },
       })
       .then(({ data }) => {
-        // console.log(data?.data[0]?.title);
         const test = JSON.parse(data?.data[0]?.social_media);
         setSocmed(test);
-        // setTitle(data?.data[0]?.title);
-        // setPhoto(data?.data[0]?.photo_profile);
         setSlug(`${data?.data[0]?.slug}`);
-
-        // setUploadImg(data?.data[0]?.photo_profile);
-        // setPicture(data?.data[0]?.photo_profile);
       })
       .catch(() => setSocmed([]))
       .finally(() => {
         setIsLoading(false);
       });
   }, []);
-  // console.log(facebook);
 
   // SAVE EDIT LINKPOCKET
   const sendData = () => {

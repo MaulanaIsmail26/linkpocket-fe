@@ -102,8 +102,6 @@ export default function Profile() {
           },
         })
         .then(({ data }) => {
-          // console.log(data?.data[0]);
-          // console.log(data?.data.length);
           if (data?.data.length === 0) {
             router.push(`/user/create_linkpocket`);
           }
@@ -125,7 +123,6 @@ export default function Profile() {
         },
       })
       .then(({ data }) => {
-        // console.log(data?.data[0]?.slug);
         const test = JSON.parse(data?.data[0]?.social_media);
         setSocmed(test);
         setTitle(data?.data[0]?.title);
@@ -140,7 +137,6 @@ export default function Profile() {
         setIsLoading(false);
       });
   }, []);
-  // console.log(link);
 
   return (
     <>

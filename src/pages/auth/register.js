@@ -56,8 +56,6 @@ export default function Register() {
       setErrPasswordNull(false);
       router.push("/auth/login");
     } catch (error) {
-      console.log(error?.response?.data?.message?.message);
-      // error?.response?.data?.message?.username?.message
       if (error?.response?.data?.messages?.fullname?.message) {
         setErrorFullname(
           error?.response?.data?.messages?.fullname?.message ??
@@ -144,28 +142,6 @@ export default function Register() {
                   {/* FORM REGISTER */}
                   <div className={`row ${style.formRegister}`}>
                     <div className={`col`}>
-                      {/* <form>
-                        <div className="mb-3">
-                          <input
-                            type="email"
-                            class="form-control"
-                            id="email"
-                            aria-describedby="email"
-                            placeholder="Email"
-                            // onChange={(e) => setEmail(e.target.value)}
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <input
-                            type="password"
-                            class="form-control"
-                            id="phone"
-                            aria-describedby="password"
-                            placeholder="Password"
-                            // onChange={(e) => setPassword(e.target.value)}
-                          />
-                        </div>
-                      </form> */}
                       <form>
                         <div className={`mb-4 ${style.userbox}`}>
                           <input
@@ -217,9 +193,6 @@ export default function Register() {
                             }}
                           />
                           <label>Password</label>
-                          {/* {errPassword ? (
-                            <p className="mt-1">{`!${error}`}</p>
-                          ) : null} */}
                           {errPasswordNull ? (
                             <p className="mt-1">{`!${errorPass}`}</p>
                           ) : null}
@@ -259,16 +232,6 @@ export default function Register() {
               </div>
             </div>
           </div>
-          {/* {notif ? (
-            <div className={`${style.notification}`}>
-              <p>Maulana Ismail</p>
-              <span className={`${style.notificationProgress}`}></span>
-            </div>
-          ) : null} */}
-          {/* <div className={`${style.notification}`}>
-            <p>Maulana Ismail</p>
-            <span className={`${style.notificationProgress}`}></span>
-          </div> */}
         </section>
       </main>
     </>
