@@ -68,8 +68,6 @@ export default function Login() {
           },
         })
         .then(({ data }) => {
-          console.log(data?.data[0]);
-          console.log(data?.data.length);
           if (data?.data.length === 0) {
             router.push("/user/create_linkpocket");
           } else {
@@ -84,12 +82,7 @@ export default function Login() {
         .finally(() => {
           setIsLoading(false);
         });
-
-      // router.push("/user/create_linkpocket");
-      // console.log(connect);
     } catch (error) {
-      // console.log(error?.response?.data?.messages);
-      // error?.response?.data?.message?.message
       if (error?.response?.data?.messages?.email?.message) {
         setErrorEmail(
           error?.response?.data?.messages?.email?.message ??

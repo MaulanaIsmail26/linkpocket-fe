@@ -109,8 +109,8 @@ export default function UserSetup() {
           },
         })
         .then(({ data }) => {
-          console.log(data?.data[0]);
-          console.log(data?.data.length);
+          // console.log(data?.data[0]);
+          // console.log(data?.data.length);
           if (data?.data.length > 0) {
             const checkProfile = localStorage?.getItem("profile")
               ? JSON.parse(localStorage?.getItem("profile"))

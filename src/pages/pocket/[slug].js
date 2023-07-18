@@ -98,7 +98,6 @@ export default function Home() {
         },
       })
       .then(({ data }) => {
-        console.log(data?.data);
         const test = JSON.parse(data?.data?.social_media);
         setSocmed(test);
         setTitle(data?.data?.title);
@@ -124,7 +123,6 @@ export default function Home() {
         },
       })
       .then(({ data }) => {
-        // console.log(data?.data[0]?.title);
         setTitleLogin(data?.data[0]?.title);
         setPhotoLogin(data?.data[0]?.photo_profile);
         
@@ -132,11 +130,6 @@ export default function Home() {
       })
       .catch(() => setTitleLogin([]));
   }, []);
-
-  // const checkProfile = localStorage.getItem("profile")
-  //   ? JSON.parse(localStorage.getItem("profile"))
-  //   : null;
-  // const [titleLogin, setTitleLogin] = React.useState(checkProfile);
 
   React.useEffect(() => {
     const checkProfile = localStorage?.getItem("profile")

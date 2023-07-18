@@ -43,8 +43,6 @@ export default function Edit() {
           },
         })
         .then(({ data }) => {
-          // console.log(data?.data[0]);
-          // console.log(data?.data.length);
           if (data?.data.length === 0) {
             router.push(`/user/create_linkpocket`);
           }
@@ -65,7 +63,6 @@ export default function Edit() {
         },
       })
       .then(({ data }) => {
-        // console.log(data?.data[0]?.title);
         const test = JSON.parse(data?.data[0]?.social_media);
         setSocmed(test);
         setTitle(data?.data[0]?.title);
@@ -82,7 +79,6 @@ export default function Edit() {
         setIsLoading(false);
       });
   }, []);
-  // console.log(title);
 
   // SAVE EDIT LINKPOCKET
   const sendData = () => {
