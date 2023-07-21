@@ -26,6 +26,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import DoneIcon from "@mui/icons-material/Done";
+import ShareIcon from "@mui/icons-material/Share";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -197,8 +198,8 @@ export default function Profile() {
                                 class={style.Btn}
                                 onClick={() => {
                                   // localStorage.clear();
-                                  localStorage.removeItem("token")
-                                  localStorage.removeItem("profile")
+                                  localStorage.removeItem("token");
+                                  localStorage.removeItem("profile");
 
                                   router.push(`/`);
                                 }}
@@ -252,7 +253,14 @@ export default function Profile() {
                                   className={`btn btn-primary ${style.btnShare}`}
                                   onClick={handleOpen}
                                 >
-                                  Share
+                                  Share{" "}
+                                  <ShareIcon
+                                    style={{
+                                      fontSize: "16px",
+                                      marginTop: "-3px",
+                                      color: "#242424",
+                                    }}
+                                  />
                                 </button>
                                 <div>
                                   <Modal
