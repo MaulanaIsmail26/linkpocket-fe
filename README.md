@@ -8,7 +8,7 @@
 <!-- BANNER -->
 ![Web Demo](./website-demo-image/banner-icon.png "Banner Icon")
 
-<a href="https://linkpocket.vercel.app//"><strong>➥ Live Demo</strong></a> 
+<a href="https://linkpocket.vercel.app//" align="center"><strong>➥ Live Demo</strong></a> 
 
 <!-- CONTENT -->
 <!-- About The Project -->
