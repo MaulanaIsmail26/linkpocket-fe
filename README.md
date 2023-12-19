@@ -2,9 +2,13 @@
 <div align="center">
 
 # LinkPocket
-<img src="./website-demo-image/iconApp.webp" align="center" width="170" height="auto" />
 
 </div>
+
+<!-- BANNER -->
+![Web Demo](./website-demo-image/banner-icon.png "Banner Icon")
+
+<a href="https://linkpocket.vercel.app//"><strong>➥ Live Demo</strong></a> 
 
 <!-- CONTENT -->
 <!-- About The Project -->
@@ -76,4 +80,4 @@ Contributions are what make the open source community such an amazing place to b
 <!-- Demo -->
 ## Demo
 
-![vCard Desktop Demo](./website-demo-image/image-demo.png "Image Demo")
+![Web Demo](./website-demo-image/image-demo.png "Image Demo")
