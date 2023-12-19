@@ -1,9 +1,8 @@
 <!-- HEADER -->
 <div align="center">
 
-<img src="./website-demo-image/iconApp.webp" align="center" width="180" height="auto" />
-
 # LinkPocket
+<img src="./website-demo-image/iconApp.webp" align="center" width="170" height="auto" />
 
 </div>
 
