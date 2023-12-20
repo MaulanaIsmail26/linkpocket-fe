@@ -22,6 +22,7 @@ LinkPocket is a website-based application that allows users to collect their soc
 ### Built With
 This app was built with some technologies below:
 <br />
+
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black "JavaScript")
 ![](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white "Nodejs")
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white "Next.js")
@@ -36,7 +37,7 @@ This app was built with some technologies below:
 This is an example of how to list things you need to use the software and how to install them.
 
 * [Node.js](https://nodejs.org/en/download/)
-* [React.js](https://reactjs.org/docs/create-a-new-react-app.html)
+* [Next.js](https://nextjs.org/docs/getting-started/installation)
 
 ### Installation
 
