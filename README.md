@@ -1,7 +1,7 @@
 <!-- HEADER -->
 <div align="center">
 
-# LinkPocket
+# 📱 LinkPocket
 
 </div>
 
